@@ -1,0 +1,141 @@
+combine:
+- gw.core.pl.common.v1.common_pl-1.0
+resources:
+  ABContact:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  ABContactAddress:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  ABContactAddresses:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  ABContactDocuments:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  ABContacts:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  Activities:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Activity:
+    permissions:
+      view: false
+      edit: false
+      approve: false
+      assign: false
+      complete: false
+      skip: false
+  ActivityAssignees:
+    permissions:
+      view: false
+  ActivityNotes:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  ActivityPattern:
+    permissions:
+      view: false
+  ActivityPatterns:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  AdminOpenApiSchema:
+    permissions:
+      view: true
+  AssignableQueue:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  AssignableQueues:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  Assignee:
+    permissions:
+      view: false
+  ContactOpenApiSchema:
+    permissions:
+      view: true
+  ContactSearch:
+    permissions:
+      view: true
+    filter: __noFilter
+  Document:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  DocumentContent:
+    permissions:
+      view: true
+  Group:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  GroupUser:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  GroupUsers:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  Groups:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  Note:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  Role:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  RolePermission:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  RolePermissions:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  Roles:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  User:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  Users:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter

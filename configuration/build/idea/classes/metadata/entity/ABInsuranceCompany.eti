@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<subtype
+  xmlns="http://guidewire.com/datamodel"
+  desc="Contact type representing insurance companies."
+  displayName="Insurance Company"
+  entity="ABInsuranceCompany"
+  final="false"
+  supertype="ABCompany"/>

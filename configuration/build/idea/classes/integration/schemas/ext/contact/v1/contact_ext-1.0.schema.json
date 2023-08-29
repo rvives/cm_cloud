@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "x-gw-combine": [
+    "ext.common.v1.common_ext-1.0",
+    "gw.content.ab.contact.v1.contact_content-1.0"
+  ],
+  "x-gw-localizationKeyPrefix": "contact.v1",
+  "definitions": { }
+}

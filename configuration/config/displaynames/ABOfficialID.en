@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Entity
+  name="ABOfficialID">
+  <Columns>
+    <Column
+      beanPath="ABOfficialID.OfficialIDType"
+      name="officialIdType"/>
+    <Column
+      beanPath="ABOfficialID.OfficialIDValue"
+      name="officialIdValue"/>
+    <Column
+      beanPath="ABOfficialID.State"
+      name="state"/>
+  </Columns>
+  <DisplayName>return state == null ? 
+    DisplayKey.get("DisplayName.ABOfficialID.NullJurisdiction", officialIdType, officialIdValue) :
+    DisplayKey.get("DisplayName.ABOfficialID", officialIdType, state, officialIdValue)
+</DisplayName>
+</Entity>

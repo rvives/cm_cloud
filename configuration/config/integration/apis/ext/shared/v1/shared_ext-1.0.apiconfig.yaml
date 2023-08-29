@@ -1,0 +1,67 @@
+combine:
+- gw.core.ab.shared.v1.shared_core-1.0
+resources:
+  ABContact:
+    resource: gw.rest.ext.ab.contact.v1.contact.ABContactExtResource
+  ABContactAddress:
+    resource: gw.rest.ext.ab.contact.v1.contact.address.ABContactAddressExtResource
+  ABContactAddresses:
+    resource: gw.rest.ext.ab.contact.v1.contact.address.ABContactAddressesExtResource
+  ABContactDocuments:
+    resource: gw.rest.ext.ab.contact.v1.contact.document.ABContactDocumentsExtResource
+  ABContacts:
+    resource: gw.rest.ext.ab.contact.v1.contact.ABContactsExtResource
+  AdminOpenApiSchema:
+    resource: gw.api.modules.rest.framework.v1.openapi.v3.OpenApiJsonPlatformResource
+  AssignableQueue:
+    resource: gw.rest.ext.ab.admin.v1.assignablequeue.AssignableQueueExtResource
+  AssignableQueues:
+    resource: gw.rest.ext.ab.admin.v1.assignablequeue.AssignableQueuesExtResource
+  ContactOpenApiSchema:
+    resource: gw.api.modules.rest.framework.v1.openapi.v3.OpenApiJsonPlatformResource
+  ContactSearch:
+    resource: gw.rest.ext.ab.contact.v1.search.contact.ContactSearchExtResource
+  Document:
+    resource: gw.rest.ext.ab.common.v1.document.DocumentExtResource
+  DocumentContent:
+    resource: gw.rest.ext.ab.common.v1.document.DocumentContentExtResource
+  Documents:
+    resource: gw.rest.ext.ab.common.v1.document.DocumentsExtResource
+  Group:
+    resource: gw.rest.ext.ab.admin.v1.group.GroupExtResource
+  GroupUser:
+    resource: gw.rest.ext.ab.admin.v1.group.GroupUserExtResource
+  GroupUsers:
+    resource: gw.rest.ext.ab.admin.v1.group.GroupUsersExtResource
+  Groups:
+    resource: gw.rest.ext.ab.admin.v1.group.GroupsExtResource
+  Role:
+    resource: gw.rest.ext.ab.admin.v1.role.RoleExtResource
+  RolePermission:
+    resource: gw.rest.ext.ab.admin.v1.role.permission.RolePermissionExtResource
+  RolePermissions:
+    resource: gw.rest.ext.ab.admin.v1.role.permission.RolePermissionsExtResource
+  Roles:
+    resource: gw.rest.ext.ab.admin.v1.role.RolesExtResource
+  User:
+    resource: gw.rest.ext.ab.admin.v1.user.UserExtResource
+  Users:
+    resource: gw.rest.ext.ab.admin.v1.user.UsersExtResource
+mappingFiles:
+- ext.admin.v1.admin_ext-1.0
+- ext.contact.v1.contact_ext-1.0
+updaterFiles:
+- ext.admin.v1.admin_ext-1.0
+- ext.contact.v1.contact_ext-1.0
+resourceAccess:
+  default:
+    yaml: ext.shared.v1.default_ext-1.0
+  internal:
+    yaml: ext.shared.v1.internal_ext-1.0
+  service:
+    yaml: ext.shared.v1.service_ext-1.0
+  unauthenticated:
+    yaml: ext.shared.v1.unauthenticatedUser_ext-1.0
+rootCollections:
+  ABContact: ABContacts
+  User: Users

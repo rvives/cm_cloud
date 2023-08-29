@@ -1,0 +1,83 @@
+{
+  "schemaName": "gw.core.ab.testutil.v1.testutil_core-1.0",
+  "combine": [
+    "gw.core.ab.framework.v1.framework_core-1.0"
+  ],
+  "updaters": {
+    "TestUtilContact": {
+      "schemaDefinition": "TestUtilContact",
+      "root": "entity.ABContact",
+      "properties": {
+        "createStatus": {
+          "path": "ABContact.CreateStatus",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "id": {
+          "path": "ABContact.RestId"
+        },
+        "score": {
+          "path": "ABContact.Score"
+        }
+      }
+    },
+    "TestUtilGroup": {
+      "schemaDefinition": "TestUtilGroup",
+      "root": "entity.Group",
+      "properties": {
+        "groupType": {
+          "path": "Group.GroupType",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "name": {
+          "path": "Group.Name"
+        },
+        "securityZone": {
+          "path": "Group.SecurityZone",
+          "valueResolver": {
+            "typeName": "gw.rest.core.ab.testutil.v1.TestUtilSecurityZoneJsonValueResolver"
+          }
+        },
+        "supervisor": {
+          "path": "Group.Supervisor",
+          "valueResolver": {
+            "typeName": "gw.rest.core.ab.testutil.v1.TestUtilUserJsonValueResolver"
+          }
+        }
+      }
+    },
+    "TestUtilRole": {
+      "schemaDefinition": "TestUtilRole",
+      "root": "entity.Role",
+      "properties": {
+        "name": {
+          "path": "Role.Name"
+        }
+      }
+    },
+    "TestUtilSpecialistService": {
+      "schemaDefinition": "TestUtilSpecialistService",
+      "root": "entity.SpecialistService",
+      "properties": {
+        "active": {
+          "path": "SpecialistService.Active"
+        },
+        "code": {
+          "path": "SpecialistService.Code"
+        },
+        "name": {
+          "path": "SpecialistService.Name"
+        },
+        "parent": {
+          "path": "SpecialistService.Parent",
+          "valueResolver": {
+            "typeName": "gw.rest.core.ab.contact.v1.contact.SpecialistServiceJsonValueResolver"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "schemaName": "gw.core.ab.contact.v1.contact_core-1.0",
+  "combine": [
+    "gw.core.ab.common.v1.common_core-1.0",
+    "gw.core.ab.framework.v1.framework_core-1.0"
+  ],
+  "mappers": {
+    "ABContact": {
+      "schemaDefinition": "ABContact",
+      "root": "entity.ABContact",
+      "properties": {
+        "cellPhone": {
+          "path": "(ABContact as ABPerson).RestV1_getPhoneNumber(ABPerson#CellPhone)",
+          "mapper": "#/mappers/PhoneNumber",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "contactSubtype": {
+          "path": "ABContact.Subtype"
+        },
+        "createStatus": {
+          "path": "ABContact.CreateStatus",
+          "mapper": "#/mappers/TypeKeyReference"
+        },
+        "dateOfBirth": {
+          "path": "(ABContact as ABPerson).RestV1_DateOfBirth",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "displayName": {
+          "path": "ABContact.RestV1_SafeDisplayName"
+        },
+        "emailAddress1": {
+          "path": "ABContact.EmailAddress1"
+        },
+        "emailAddress2": {
+          "path": "ABContact.EmailAddress2"
+        },
+        "faxPhone": {
+          "path": "ABContact.RestV1_getPhoneNumber(ABContact#FaxPhone)",
+          "mapper": "#/mappers/PhoneNumber"
+        },
+        "firstName": {
+          "path": "(ABContact as ABPerson).FirstName",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "homePhone": {
+          "path": "ABContact.RestV1_getPhoneNumber(ABContact#HomePhone)",
+          "mapper": "#/mappers/PhoneNumber",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "id": {
+          "path": "ABContact.RestId"
+        },
+        "lastName": {
+          "path": "(ABContact as ABPerson).LastName",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "licenseNumber": {
+          "path": "(ABContact as ABPerson).LicenseNumber",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "licenseState": {
+          "path": "(ABContact as ABPerson).LicenseState",
+          "mapper": "#/mappers/TypeKeyReference",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "linkID": {
+          "path": "ABContact.LinkID"
+        },
+        "middleName": {
+          "path": "(ABContact as ABPerson).MiddleName",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "name": {
+          "path": "ABContact.Name",
+          "predicate": "ABContact typeis ABCompany || ABContact typeis ABPlace"
+        },
+        "notes": {
+          "path": "ABContact.Notes"
+        },
+        "preferred": {
+          "path": "ABContact.Preferred",
+          "predicate": "ABContact typeis ABCompanyVendor || ABContact typeis ABPersonVendor"
+        },
+        "prefix": {
+          "path": "(ABContact as ABPerson).Prefix",
+          "mapper": "#/mappers/TypeKeyReference",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "primaryAddress": {
+          "path": "ABContact.PrimaryAddress.RestV1_AsReference",
+          "mapper": "#/mappers/ResourceReference"
+        },
+        "primaryPhone": {
+          "path": "ABContact.PrimaryPhoneValue"
+        },
+        "primaryPhoneType": {
+          "path": "ABContact.PrimaryPhone",
+          "mapper": "#/mappers/TypeKeyReference"
+        },
+        "score": {
+          "path": "ABContact.Score"
+        },
+        "services": {
+          "path": "ABContact.RestV1_SortedSpecialistServices",
+          "mapper": "#/mappers/SpecialistService"
+        },
+        "suffix": {
+          "path": "(ABContact as ABPerson).Suffix",
+          "mapper": "#/mappers/TypeKeyReference",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "tags": {
+          "path": "ABContact.Tags.sortBy(\\p -> p.Type.Code)",
+          "mapper": "#/mappers/ContactTag"
+        },
+        "taxId": {
+          "path": "null as String",
+          "predicate": "ABContact typeis ABCompany || ABContact typeis ABPerson"
+        },
+        "vendorAvailability": {
+          "path": "ABContact.VendorAvailability",
+          "mapper": "#/mappers/TypeKeyReference"
+        },
+        "workPhone": {
+          "path": "ABContact.RestV1_getPhoneNumber(ABContact#WorkPhone)",
+          "mapper": "#/mappers/PhoneNumber"
+        }
+      }
+    },
+    "ContactSearchCriteriaTag": {
+      "schemaDefinition": "ContactTag",
+      "root": "entity.ABContactSearchCriteriaTag",
+      "properties": {
+        "type": {
+          "path": "ABContactSearchCriteriaTag.Type",
+          "mapper": "#/mappers/TypeKeyReference"
+        }
+      }
+    },
+    // Suppress warnings
+    "ContactSearchRequestAttributes": {
+      "schemaDefinition": "ContactSearchRequestAttributes",
+      "root": "entity.ABContactSearchCriteria",
+      "properties": {
+        "allTagsRequired": {
+          "path": "null as Boolean"
+        },
+        "contactSubtype": {
+          "path": "null as typekey.ABContact",
+          "mapper": "#/mappers/TypeKeyReference",
+          "predicate": "false"
+        },
+        "coordinates": {
+          "path": "null as gw.api.database.spatial.SpatialPoint",
+          "mapper": "#/mappers/SpatialPoint",
+          "predicate": "false"
+        },
+        "firstName": {
+          "path": "null as String",
+          "predicate": "false"
+        },
+        "lastName": {
+          "path": "null as String",
+          "predicate": "false"
+        },
+        "minimumScore": {
+          "path": "null as Integer",
+          "predicate": "false"
+        },
+        "name": {
+          "path": "null as String",
+          "predicate": "false"
+        },
+        "organizationName": {
+          "path": "null as String",
+          "predicate": "false"
+        },
+        "radius": {
+          "path": "null as Integer"
+        },
+        "services": {
+          "path": "null as SpecialistService[]",
+          "mapper": "#/mappers/SpecialistService",
+          "predicate": "false"
+        },
+        "tags": {
+          "path": "null as ABContactSearchCriteriaTag[]",
+          "mapper": "#/mappers/ContactSearchCriteriaTag",
+          "predicate": "false"
+        },
+        "taxId": {
+          "path": "null as String",
+          "predicate": "false"
+        },
+        "unitOfDistance": {
+          "path": "null as UnitOfDistance",
+          "mapper": "#/mappers/TypeKeyReference",
+          "predicate": "false"
+        }
+      }
+    },
+    "ContactTag": {
+      "schemaDefinition": "ContactTag",
+      "root": "entity.ABContactTag",
+      "properties": {
+        "type": {
+          "path": "ABContactTag.Type",
+          "mapper": "#/mappers/TypeKeyReference"
+        }
+      }
+    },
+    "ParentService": {
+      "schemaDefinition": "CodeReference",
+      "root": "entity.SpecialistService",
+      "properties": {
+        "code": {
+          "path": "SpecialistService.Code"
+        },
+        "displayName": {
+          "path": "SpecialistService.RestV1_SafeDisplayName"
+        }
+      }
+    },
+    "SpecialistService": {
+      "schemaDefinition": "SpecialistService",
+      "root": "entity.SpecialistService",
+      "properties": {
+        "active": {
+          "path": "SpecialistService.Active"
+        },
+        "code": {
+          "path": "SpecialistService.Code"
+        },
+        "description": {
+          "path": "SpecialistService.Description"
+        },
+        "name": {
+          "path": "SpecialistService.Name"
+        },
+        "parent": {
+          "path": "SpecialistService.Parent",
+          "mapper": "#/mappers/ParentService"
+        }
+      }
+    }
+  }
+}

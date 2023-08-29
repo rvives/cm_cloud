@@ -1,0 +1,154 @@
+combine:
+- gw.core.pl.common.v1.common_pl-1.0
+resources:
+  ABContact:
+    permissions:
+      view: "perm.ABContact.view(resource.Element)"
+      edit: "perm.ABContact.edit(resource.Element)"
+      delete: "perm.ABContact.delete(resource.Element)"
+  ABContactAddress:
+    permissions:
+      view: __inherit
+      edit: __inherit
+      delete: __inherit
+  ABContactAddresses:
+    permissions:
+      view: __inherit
+      create: __inherit
+    filter: __noFilter
+  ABContactDocuments:
+    permissions:
+      view:
+      - __inherit
+      - perm.System.docview
+      create:
+      - __inherit
+      - perm.Document.create
+    filter: __noFilter
+  ABContacts:
+    permissions:
+      view: perm.ABContact.viewsearch
+      create: perm.ABContact.create
+    filter: gw.rest.core.ab.contact.v1.contact.ABContactPermissionFilter
+  Activities:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Activity:
+    permissions:
+      view: false
+      edit: false
+      approve: false
+      assign: false
+      complete: false
+      skip: false
+  ActivityAssignees:
+    permissions:
+      view: false
+  ActivityNotes:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  ActivityPattern:
+    permissions:
+      view: false
+  ActivityPatterns:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  AdminOpenApiSchema:
+    permissions:
+      view: true
+  AssignableQueue:
+    permissions:
+      view: __inherit
+      edit: __inherit
+      delete: __inherit
+  AssignableQueues:
+    permissions:
+      view: __inherit
+      create: __inherit
+    filter: __noFilter
+  Assignee:
+    permissions:
+      view: false
+  ContactOpenApiSchema:
+    permissions:
+      view: true
+  ContactSearch:
+    permissions:
+      view: perm.ABContact.viewsearch
+    filter: __noFilter
+  Group:
+    permissions:
+      view:
+      - __inherit
+      - "gw.rest.core.pl.util.v1.GroupInternalPermissionUtil.canCurrentUserView(resource.Group)"
+      edit:
+      - perm.Group.edit
+      delete:
+      - perm.Group.delete
+  GroupUser:
+    permissions:
+      view:
+      - __inherit
+      edit:
+      - perm.Group.edit
+      delete:
+      - perm.User.edit
+      - perm.Group.edit
+  GroupUsers:
+    permissions:
+      view:
+      - __inherit
+      - perm.User.view
+      - perm.Group.view
+      create:
+      - perm.User.edit
+      - perm.Group.edit
+    filter: __noFilter
+  Groups:
+    permissions:
+      view:
+      - perm.User.view
+      - perm.Group.view
+      - perm.Group.viewtree
+      create:
+      - perm.Group.create
+    filter: gw.rest.core.pl.admin.v1.group.GroupSecurityZoneFilter
+  Note:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  Role:
+    permissions:
+      view: "perm.Role.view(resource.Element)"
+      edit: "perm.Role.edit(resource.Element)"
+      delete: "perm.Role.delete(resource.Element)"
+  RolePermission:
+    permissions:
+      view: __inherit
+      edit: perm.RolePrivilege.edit
+      delete: perm.RolePrivilege.delete
+  RolePermissions:
+    permissions:
+      view: __inherit
+      create: perm.RolePrivilege.create
+    filter: __noFilter
+  Roles:
+    permissions:
+      view: perm.Role.view
+      create: perm.Role.create
+    filter: __noFilter
+  User:
+    permissions:
+      view: "perm.User.view(resource.Element)"
+      edit: "perm.User.edit(resource.Element)"
+      delete: "perm.User.delete(resource.Element)"
+  Users:
+    permissions:
+      view: perm.User.view
+      create: perm.User.create
+    filter: __noFilter

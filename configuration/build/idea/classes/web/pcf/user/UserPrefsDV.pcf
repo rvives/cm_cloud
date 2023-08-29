@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <DetailViewPanel
+    id="UserPrefsDV">
+    <Require
+      name="UserSettings"
+      type="UserSettings"/>
+    <Require
+      name="User"
+      type="User"/>
+    <Variable
+      initialValue="gw.api.system.PLConfigParameters.SingleSignOnAuthenticationEnabled.getValue()"
+      name="ssoEnabled"
+      type="Boolean"/>
+    <InputColumn>
+      <ConfirmPasswordInput
+        confirmLabel="DisplayKey.get(&quot;Web.UserPreferences.ConfirmPassword&quot;)"
+        editable="true"
+        id="Password"
+        label="DisplayKey.get(&quot;Web.UserPreferences.NewPassword&quot;)"
+        oldPasswordLabel="DisplayKey.get(&quot;Web.UserPreferences.OldPassword&quot;)"
+        requireOldPassword="true"
+        value="User.Credential.Password"
+        visible="!ssoEnabled"/>
+      <InputSetRef
+        def="UserPreferencesInputSet(User)"/>
+    </InputColumn>
+  </DetailViewPanel>
+</PCF>

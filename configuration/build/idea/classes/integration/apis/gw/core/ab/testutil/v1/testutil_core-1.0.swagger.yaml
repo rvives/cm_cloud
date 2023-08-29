@@ -1,0 +1,413 @@
+swagger: "2.0"
+info:
+  title: "Test Util API"
+  description: "APIs for controlling aspects of ContactManager as necessary for testing purposes. Not intended for production use."
+  version: "1.5.0"
+basePath: /test-util/v1
+consumes:
+- application/json
+produces:
+- application/json
+x-gw-combine:
+- gw.core.ab.framework.v1.framework_core-1.0
+x-gw-schema-import:
+  testutil: gw.core.ab.testutil.v1.testutil_core-1.0
+x-gw-apihandlers:
+- gw.rest.core.ab.testutil.v1.TestUtilApiCoreHandler
+paths:
+  "/contacts/{contactId}":
+    parameters:
+    - $ref: "#/parameters/contactId"
+    get:
+      summary: "Retrieve a contact"
+      description: "Retrieve a contact"
+      operationId: getContact
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: TestUtilContact
+      x-gw-parameter-sets:
+      - get-element
+      responses:
+        "200":
+          description: "Successful response"
+          schema:
+            $ref: "#/definitions/TestUtilContactResponse"
+    patch:
+      summary: "Update the details of the specific contact"
+      description: "Update the details of the specific contact"
+      operationId: patchContact
+      x-gw-extensions:
+        operationType: patch-element
+        resourceType: TestUtilContact
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/TestUtilContactRequest"
+      x-gw-parameter-sets:
+      - patch-element
+      responses:
+        "200":
+          description: "Successfully updated"
+          schema:
+            $ref: "#/definitions/TestUtilContactResponse"
+  "/contacts/{contactId}/add-pending-contact-update":
+    parameters:
+    - $ref: "#/parameters/contactId"
+    post:
+      summary: "Add a pending contact update to the given contact"
+      description: "Add a pending contact update to the given contact"
+      operationId: addPendingContactUpdate
+      x-gw-extensions:
+        operationType: custom-action
+        resourceType: TestUtilContact
+      x-gw-parameter-sets:
+      - custom-action
+      responses:
+        "200":
+          description: "Successfully added a pending contact update to the contact"
+          schema:
+            $ref: "#/definitions/TestUtilContactResponse"
+  "/contacts/{contactId}/add-related-contact":
+    parameters:
+    - $ref: "#/parameters/contactId"
+    post:
+      summary: "Add a related contact"
+      description: "Add a related contact"
+      operationId: addRelatedContact
+      x-gw-extensions:
+        operationType: custom-action
+        resourceType: TestUtilContact
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/TestUtilAddRelatedContactRequest"
+      x-gw-parameter-sets:
+      - custom-action
+      responses:
+        "200":
+          description: "Successfully added a related contact"
+          schema:
+            $ref: "#/definitions/TestUtilContactResponse"
+  /delete-documents:
+    post:
+      summary: "Delete all documents for tests"
+      operationId: deleteAllDocuments
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        operationType: custom-action
+      responses:
+        "204":
+          description: "Successful deletion"
+  /groups:
+    get:
+      summary: "Retrieve a collection of test util groups"
+      description: "Retrieve a collection of test util groups"
+      operationId: getTestUtilGroups
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        childResourceType: TestUtilGroup
+        operationType: get-collection
+        resourceType: TestUtilGroups
+      x-gw-parameter-sets: get-collection
+      responses:
+        "200":
+          description: "Successful response"
+          schema:
+            $ref: "#/definitions/TestUtilGroupList"
+    post:
+      summary: "Create a new test util group"
+      description: "Create a new test util  group"
+      operationId: createTestUtilGroup
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        childResourceType: TestUtilGroup
+        operationType: post-collection
+        resourceType: TestUtilGroups
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/TestUtilGroupRequest"
+      x-gw-parameter-sets: post-collection
+      responses:
+        "201":
+          description: "The details of the newly-created Group"
+          schema:
+            $ref: "#/definitions/TestUtilGroupResponse"
+  "/groups/{groupId}":
+    parameters:
+    - $ref: "#/parameters/groupId"
+    get:
+      summary: "Retrieve details of a group"
+      description: "Retrieve details of a group"
+      operationId: getTestUtilGroup
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: TestUtilGroup
+      x-gw-parameter-sets: get-element
+      responses:
+        "200":
+          description: "Successful response"
+          schema:
+            $ref: "#/definitions/TestUtilGroupResponse"
+    patch:
+      summary: "Update a test util group"
+      description: "Update a test util group"
+      operationId: updateTestUtilGroup
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        operationType: patch-element
+        resourceType: TestUtilGroup
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/TestUtilGroupRequest"
+      x-gw-parameter-sets: patch-element
+      responses:
+        "200":
+          description: "Successful response"
+          schema:
+            $ref: "#/definitions/TestUtilGroupResponse"
+    delete:
+      summary: "Delete a test util group"
+      description: "Delete a test util group"
+      operationId: deleteTestUtilGroup
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        operationType: delete-element
+        resourceType: TestUtilGroup
+      x-gw-parameter-sets: delete-element
+      responses:
+        "204":
+          description: "Successful deletion"
+  /openapi.json:
+    get:
+      summary: "Return the Open API 3.0 representation of the schema"
+      description: "Return the Open API 3.0 representation of the schema"
+      operationId: getOpenApiSchema
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: TestUtilOpenApiSchema
+      x-gw-parameter-sets:
+      - openapi
+      responses:
+        "200":
+          description: "Successful response"
+          schema:
+            type: string
+  /roles:
+    post:
+      summary: "Create a new role for tests"
+      description: "Create a new role for tests"
+      operationId: createRole
+      x-gw-extensions:
+        childResourceType: TestUtilRole
+        operationType: post-collection
+        resourceType: TestUtilRoles
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/TestUtilRoleRequest"
+      x-gw-parameter-sets:
+      - post-collection
+      responses:
+        "201":
+          description: "Successful creation"
+          schema:
+            $ref: "#/definitions/TestUtilRoleResponse"
+  /specialist-services:
+    get:
+      summary: "Retrieves a list of specialist services"
+      description: "Retrieves a non hierarchical list of specialist services"
+      operationId: getSpecialistServices
+      x-gw-extensions:
+        childResourceType: TestUtilSpecialistService
+        operationType: get-collection
+        resourceType: TestUtilSpecialistServices
+      x-gw-parameter-sets:
+      - get-collection
+      responses:
+        "200":
+          description: "The list of specialist services"
+          schema:
+            $ref: "#/definitions/TestUtilSpecialistServiceList"
+    post:
+      summary: "Create a new specialist service for tests"
+      description: "For test environments that don't have services loaded."
+      operationId: createTestUtilSpecialistService
+      x-gw-extensions:
+        childResourceType: TestUtilSpecialistService
+        operationType: post-collection
+        resourceType: TestUtilSpecialistServices
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/TestUtilSpecialistServiceRequest"
+      x-gw-parameter-sets:
+      - post-collection
+      responses:
+        "201":
+          description: "Successful creation"
+          schema:
+            $ref: "#/definitions/TestUtilSpecialistServiceResponse"
+parameters:
+  contactId:
+    name: contactId
+    in: path
+    description: "The identifier for the contact"
+    required: true
+    type: string
+  groupId:
+    name: groupId
+    in: path
+    description: "The REST identifier for the group"
+    required: true
+    type: string
+    x-gw-sinceVersion: "1.4.0"
+  roleId:
+    name: roleId
+    in: path
+    description: "The identifier for the role"
+    required: true
+    type: string
+x-gw-cors-policy: testutil
+x-gw-cors-policies:
+  testutil:
+    enabled: "${cors.testutil.enabled:true}"
+    allowOrigins: "${cors.testutil.allowOrigins:any}"
+    allowCredentials: "${cors.testutil.allowCredentials:true}"
+    allowHeaders: "${cors.testutil.allowHeaders:null}"
+    exposeHeaders: "${cors.testutil.exposeHeaders:null}"
+    maxAge: "${cors.testutil.maxAge:1200}"
+    allowMethods: "${cors.testutil.allowMethods:null}"
+x-gw-localizationKeyPrefix: testutil.v1
+definitions:
+  TestUtilAddRelatedContactRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilAddRelatedContactRequestData"
+  TestUtilAddRelatedContactRequestAttributes:
+    type: object
+    required:
+    - relatedContactId
+    - relationship
+    properties:
+      relatedContactId:
+        type: string
+      relationship:
+        $ref: "testutil#/definitions/TypeKeyReference"
+        x-gw-extensions:
+          typelist: ContactBidiRel
+  TestUtilAddRelatedContactRequestData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "#/definitions/TestUtilAddRelatedContactRequestAttributes"
+  TestUtilContactData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    properties:
+      attributes:
+        $ref: "testutil#/definitions/TestUtilContact"
+  TestUtilContactRequest:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilContactData"
+  TestUtilContactResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilContactData"
+  TestUtilGroupData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "testutil#/definitions/TestUtilGroup"
+  TestUtilGroupList:
+    type: object
+    x-gw-extend:
+    - "#/definitions/DataListEnvelope"
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/TestUtilGroupData"
+  TestUtilGroupRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilGroupData"
+  TestUtilGroupResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilGroupData"
+  TestUtilRoleData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    properties:
+      attributes:
+        $ref: "testutil#/definitions/TestUtilRole"
+  TestUtilRoleRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilRoleData"
+  TestUtilRoleResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilRoleData"
+  TestUtilSpecialistServiceData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    properties:
+      attributes:
+        $ref: "testutil#/definitions/TestUtilSpecialistService"
+  TestUtilSpecialistServiceList:
+    type: object
+    x-gw-extend:
+    - "#/definitions/DataListEnvelope"
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/TestUtilSpecialistServiceData"
+  TestUtilSpecialistServiceRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilSpecialistServiceData"
+  TestUtilSpecialistServiceResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/TestUtilSpecialistServiceData"

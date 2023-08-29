@@ -1,0 +1,52 @@
+{
+  "schemaName": "gw.content.ab.contact.v1.contact_content-1.0",
+  "combine": [
+    "gw.content.ab.common.v1.common_content-1.0",
+    "gw.core.ab.contact.v1.contact_core-1.0"
+  ],
+  "mappers": {
+    "ABContact": {
+      "schemaDefinition": "ABContact",
+      "root": "entity.ABContact",
+      "properties": {
+        "firstNameKanji": {
+          "path": "(ABContact as ABPerson).FirstNameKanji",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "lastNameKanji": {
+          "path": "(ABContact as ABPerson).LastNameKanji",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "nameKanji": {
+          "path": "ABContact.NameKanji",
+          "predicate": "ABContact typeis ABCompany || ABContact typeis ABPlace"
+        },
+        "particle": {
+          "path": "(ABContact as ABPerson).Particle",
+          "predicate": "ABContact typeis ABPerson"
+        },
+        "taxId": {
+          "path": "ABContact.RestV1_MaskedTaxId"
+        }
+      }
+    },
+    "ContactSearchRequestAttributes": {
+      "schemaDefinition": "ContactSearchRequestAttributes",
+      "root": "entity.ABContactSearchCriteria",
+      "properties": {
+        "firstNameKanji": {
+          "path": "null as String",
+          "predicate": "false"
+        },
+        "lastNameKanji": {
+          "path": "null as String",
+          "predicate": "false"
+        },
+        "nameKanji": {
+          "path": "null as String",
+          "predicate": "false"
+        }
+      }
+    }
+  }
+}

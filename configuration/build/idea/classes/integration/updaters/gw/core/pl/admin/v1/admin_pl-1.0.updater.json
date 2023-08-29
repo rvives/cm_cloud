@@ -1,0 +1,190 @@
+{
+  "schemaName": "gw.core.pl.admin.v1.admin_pl-1.0",
+  "combine": [
+    "gw.core.pl.framework.v1.framework_pl-1.0",
+    "gw.core.pl.common.v1.common_pl-1.0"
+  ],
+  "typeUses": [
+    "gw.rest.core.pl.common.v1.phone.PhoneNumberResolver"
+  ],
+  "updaters": {
+    "AssignableQueue": {
+      "schemaDefinition": "AssignableQueue",
+      "root": "entity.AssignableQueue",
+      "properties": {
+        "description": {
+          "path": "AssignableQueue.Description"
+        },
+        "name": {
+          "path": "AssignableQueue.Name"
+        },
+        "subGroupVisible": {
+          "path": "AssignableQueue.SubGroupVisible"
+        }
+      }
+    },
+    "Group": {
+      "schemaDefinition": "Group",
+      "root": "entity.Group",
+      "properties": {
+        "groupType": {
+          "path": "Group.GroupType",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "name": {
+          "path": "Group.Name"
+        },
+        "parent": {
+          "path": "Group.Parent",
+          "valueResolver": {
+            "typeName": "gw.rest.core.pl.admin.v1.group.GroupJsonValueResolver",
+            "setByRefid": false
+          }
+        },
+        "supervisor": {
+          "path": "Group.Supervisor",
+          "valueResolver": {
+            "typeName": "gw.rest.core.pl.admin.v1.group.UserJsonValueResolver",
+            "setByRefid": false
+          }
+        }
+      }
+    },
+    "GroupUser": {
+      "schemaDefinition": "GroupUser",
+      "root": "entity.GroupUser",
+      "updateLast": [
+        "loadFactor"
+      ],
+      "properties": {
+        "loadFactor": {
+          "path": "GroupUser.RestV1_LoadFactor"
+        },
+        "loadFactorType": {
+          "path": "GroupUser.LoadFactorType",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "manager": {
+          "path": "GroupUser.Manager"
+        },
+        "member": {
+          "path": "GroupUser.Member"
+        },
+        "user": {
+          "path": "GroupUser.User",
+          "valueResolver": {
+            "typeName": "gw.rest.core.pl.admin.v1.group.UserJsonValueResolver",
+            "setByRefid": false
+          }
+        }
+      }
+    },
+    "Role": {
+      "schemaDefinition": "Role",
+      "root": "entity.Role",
+      "properties": {
+        "carrierInternal": {
+          "path": "Role.CarrierInternalRole"
+        },
+        "description": {
+          "path": "Role.Description"
+        },
+        "name": {
+          "path": "Role.Name"
+        },
+        "roleType": {
+          "path": "Role.RoleType",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        }
+      }
+    },
+    "RolePermission": {
+      "schemaDefinition": "RolePermission",
+      "root": "entity.RolePrivilege",
+      "properties": {
+        "permission": {
+          "path": "RolePrivilege.Permission",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        }
+      }
+    },
+    "User": {
+      "schemaDefinition": "User",
+      "root": "entity.User",
+      "properties": {
+        "active": {
+          "path": "User.Credential.Active"
+        },
+        "cellPhone": {
+          "path": "User.Contact.RestV1_CellPhone",
+          "setter": "User.Contact.RestV1_setPhoneNumber(Person#CellPhone, value)",
+          "valueResolver": {
+            "typeName": "PhoneNumberResolver"
+          }
+        },
+        "employeeNumber": {
+          "path": "User.Contact.EmployeeNumber"
+        },
+        "externalUser": {
+          "path": "User.ExternalUser"
+        },
+        "firstName": {
+          "path": "User.Contact.FirstName"
+        },
+        "homePhone": {
+          "path": "User.Contact.RestV1_HomePhone",
+          "setter": "User.Contact.RestV1_setPhoneNumber(Contact#HomePhone, value)",
+          "valueResolver": {
+            "typeName": "PhoneNumberResolver"
+          }
+        },
+        "lastName": {
+          "path": "User.Contact.LastName"
+        },
+        "roles": {
+          "path": "User.Roles*.Role",
+          "items": {
+            "add": "User.addToRoles(new UserRole(User) { :Role = value })",
+            "remove": "User.RestV1_removeFromRoles(value)",
+            "jsonKey": "jsonValue.get('id')",
+            "valueKey": "value.RestId",
+            "valueResolver": {
+              "typeName": "gw.rest.core.pl.framework.v1.refs.KeyableBeanJsonValueResolver",
+              "setByRefid": false
+            }
+          }
+        },
+        "suffix": {
+          "path": "User.Contact.Suffix",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "username": {
+          "path": "User.Credential.UserName"
+        },
+        "vacationStatus": {
+          "path": "User.VacationStatus",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "workPhone": {
+          "path": "User.Contact.RestV1_WorkPhone",
+          "setter": "User.Contact.RestV1_setPhoneNumber(Contact#WorkPhone, value)",
+          "valueResolver": {
+            "typeName": "PhoneNumberResolver"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+combine:
+- gw.core.ab.systemtools.v1.systemtools_core-1.0
+resources:
+  BatchProcess:
+    resource: gw.rest.ext.ab.systemtools.v1.batch.BatchProcessExtResource
+  BatchProcesses:
+    resource: gw.rest.ext.ab.systemtools.v1.batch.BatchProcessesExtResource
+  DatabaseConsistencyCheck:
+    resource: gw.rest.ext.ab.systemtools.v1.dbcc.DatabaseConsistencyCheckExtResource
+  DatabaseConsistencyCheckReport:
+    resource: gw.rest.ext.ab.systemtools.v1.dbcc.DatabaseConsistencyCheckReportExtResource
+  DatabaseConsistencyChecks:
+    resource: gw.rest.ext.ab.systemtools.v1.dbcc.DatabaseConsistencyChecksExtResource
+mappingFiles:
+- ext.systemtools.v1.systemtools_ext-1.0
+updaterFiles:
+- ext.systemtools.v1.systemtools_ext-1.0
+resourceAccess:
+  default:
+    yaml: ext.systemtools.v1.default_ext-1.0
+  internal:
+    yaml: ext.systemtools.v1.internal_ext-1.0
+  service:
+    yaml: ext.systemtools.v1.service_ext-1.0
+  unauthenticated:
+    yaml: ext.systemtools.v1.unauthenticatedUser_ext-1.0

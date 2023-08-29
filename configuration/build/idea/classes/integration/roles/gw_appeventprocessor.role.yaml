@@ -1,0 +1,20 @@
+name: gw_appeventprocessor
+endpoints:
+- endpoint: /async/v1/openapi.json
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*"
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*/response"
+  methods:
+  - GET
+- endpoint: /contact/v1/graph-schema
+  methods:
+  - GET
+- endpoint: "/event/v1/events/*/data"
+  methods:
+  - GET
+- endpoint: /systemtools/v1/openapi.json
+  methods:
+  - GET

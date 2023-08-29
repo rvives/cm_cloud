@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "x-gw-combine": [
+    "gw.core.ab.framework.v1.framework_core-1.0"
+  ],
+  "definitions": {
+    "TestUtilCodeReference": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      }
+    },
+    "TestUtilContact": {
+      "type": "object",
+      "properties": {
+        "createStatus": {
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-extensions": {
+            "typelist": "ContactCreationApprovalStatus"
+          }
+        },
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "relatedContacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TestUtilRelatedContact"
+          }
+        },
+        "score": {
+          "type": "integer"
+        }
+      }
+    },
+    "TestUtilGroup": {
+      "title": "TestUtilGroup",
+      "description": "Group for test util",
+      "type": "object",
+      "x-gw-sinceVersion": "1.4.0",
+      "properties": {
+        "groupType": {
+          "title": "Group type",
+          "description": "Type of this group",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-extensions": {
+            "typelist": "GroupType"
+          }
+        },
+        "id": {
+          "title": "ID",
+          "description": "The unique identifier of this element",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "The name of this group",
+          "type": "string"
+        },
+        "securityZone": {
+          "title": "SecurityZone",
+          "description": "A reference to the `SecurityZone` to which the group belongs",
+          "$ref": "#/definitions/SimpleReference",
+          "x-gw-extensions": {
+            "resourceType": "SecurityZone"
+          }
+        },
+        "supervisor": {
+          "title": "Supervisor",
+          "description": "A reference to the `User` that represents the supervisor of this group",
+          "$ref": "#/definitions/SimpleReference",
+          "x-gw-extensions": {
+            "resourceType": "User"
+          }
+        }
+      }
+    },
+    "TestUtilRelatedContact": {
+      "type": "object",
+      "properties": {
+        "relatedContact": {
+          "$ref": "#/definitions/SimpleReference",
+          "x-gw-extensions": {
+            "resourceType": "ABContact"
+          }
+        },
+        "relationship": {
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-extensions": {
+            "typelist": "ContactRel"
+          }
+        }
+      }
+    },
+    "TestUtilRole": {
+      "type": "object",
+      "required": [
+        "permissions"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "x-gw-extensions": {
+            "filterable": true
+          }
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TestUtilSpecialistService": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-gw-extensions": {
+            "createOnly": true,
+            "requiredForCreate": true
+          }
+        },
+        "code": {
+          "type": "string",
+          "x-gw-extensions": {
+            "createOnly": true,
+            "filterable": true,
+            "requiredForCreate": true
+          }
+        },
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "x-gw-extensions": {
+            "createOnly": true,
+            "requiredForCreate": true
+          }
+        },
+        "parent": {
+          "$ref": "#/definitions/TestUtilCodeReference",
+          "x-gw-extensions": {
+            "createOnly": true,
+            "x-gw-nullable": true
+          }
+        }
+      }
+    }
+  }
+}

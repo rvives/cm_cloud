@@ -1,0 +1,8 @@
+swagger: "2.0"
+x-gw-combine:
+- gw.core.pl.systemtools.v1.systemtools_pl-1.0
+- gw.core.ab.framework.v1.framework_core-1.0
+x-gw-schema-import:
+  systemtools: gw.core.ab.systemtools.v1.systemtools_core-1.0
+paths: {}
+x-gw-cors-policy: systemtools

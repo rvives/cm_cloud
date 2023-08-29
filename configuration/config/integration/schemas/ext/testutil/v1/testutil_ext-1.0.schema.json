@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "x-gw-combine": [
+    "gw.content.ab.testutil.v1.testutil_content-1.0"
+  ],
+  "definitions": { }
+}

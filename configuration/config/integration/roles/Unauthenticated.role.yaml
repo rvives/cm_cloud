@@ -1,0 +1,26 @@
+name: UnauthenticatedRole
+endpoints:
+- endpoint: /admin/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /async/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /common/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /contact/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /systemtools/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /test-util/v1/openapi.json
+  methods:
+  - GET
+accessibleFields:
+  "*":
+    edit:
+    - "*public"
+    view:
+    - "*public"

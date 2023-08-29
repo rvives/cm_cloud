@@ -1,0 +1,45 @@
+name: "Contact Viewer"
+endpoints:
+- endpoint: /admin/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /async/v1/openapi.json
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*"
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*/response"
+  methods:
+  - GET
+- endpoint: /contact/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /common/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /contact/v1/contacts
+  methods:
+  - GET
+- endpoint: "/contact/v1/contacts/*"
+  methods:
+  - GET
+- endpoint: "/contact/v1/contacts/*/addresses"
+  methods:
+  - GET
+- endpoint: "/contact/v1/contacts/*/addresses/*"
+  methods:
+  - GET
+- endpoint: /contact/v1/search/contacts
+  methods:
+  - POST
+- endpoint: /systemtools/v1/openapi.json
+  methods:
+  - GET
+accessibleFields:
+  "*":
+    edit:
+    - "*public"
+    view:
+    - "*public"
+    - "*internal"

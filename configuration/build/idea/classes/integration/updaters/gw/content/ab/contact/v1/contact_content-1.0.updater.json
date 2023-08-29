@@ -1,0 +1,42 @@
+{
+  "schemaName": "gw.content.ab.contact.v1.contact_content-1.0",
+  "combine": [
+    "gw.content.ab.common.v1.common_content-1.0",
+    "gw.core.ab.contact.v1.contact_core-1.0"
+  ],
+  "updaters": {
+    "ABContact": {
+      "schemaDefinition": "ABContact",
+      "root": "entity.ABContact",
+      "properties": {
+        "firstNameKanji": {
+          "path": "(ABContact as ABPerson).FirstNameKanji"
+        },
+        "lastNameKanji": {
+          "path": "(ABContact as ABPerson).LastNameKanji"
+        },
+        "nameKanji": {
+          "path": "ABContact.NameKanji"
+        },
+        "particle": {
+          "path": "(ABContact as ABPerson).Particle"
+        }
+      }
+    },
+    "ContactSearch": {
+      "schemaDefinition": "ContactSearchRequestAttributes",
+      "root": "entity.ABContactSearchCriteria",
+      "properties": {
+        "firstNameKanji": {
+          "path": "ABContactSearchCriteria.FirstNameKanji"
+        },
+        "lastNameKanji": {
+          "path": "ABContactSearchCriteria.KeywordKanji"
+        },
+        "nameKanji": {
+          "path": "ABContactSearchCriteria.KeywordKanji"
+        }
+      }
+    }
+  }
+}

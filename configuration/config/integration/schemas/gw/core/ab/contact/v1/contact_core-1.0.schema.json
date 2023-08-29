@@ -1,0 +1,452 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "x-gw-combine": [
+    "gw.core.ab.common.v1.common_core-1.0",
+    "gw.core.ab.framework.v1.framework_core-1.0"
+  ],
+  "x-gw-localizationKeyPrefix": "contact.v1",
+  "definitions": {
+    "ABContact": {
+      "title": "ABContact",
+      "description": "An `ABContact` represents a person, a company or a place",
+      "type": "object",
+      "x-gw-extensions": {
+        "discriminatorProperty": "contactSubtype"
+      },
+      "properties": {
+        "cellPhone": {
+          "title": "Cell phone",
+          "description": "The person's mobile phone number. Only applicable for an `ABContact` that represents a person.",
+          "$ref": "#/definitions/PhoneNumber",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "contactSubtype": {
+          "title": "Contact subtype",
+          "description": "The type of contact that this `ABContact` represents, such as `ABPerson` or `ABCompany`. The set of fields that can be set on an `ABContact` depend on its `contactSubtype`.",
+          "type": "string",
+          "x-gw-type": "typekey.ABContact",
+          "x-gw-extensions": {
+            "createOnly": true,
+            "requiredForCreate": true
+          }
+        },
+        "createStatus": {
+          "title": "Create status",
+          "description": "Creation status of this `ABContact`",
+          "$ref": "#/definitions/TypeKeyReference",
+          "readOnly": true,
+          "x-gw-sinceVersion": "1.3.0",
+          "x-gw-extensions": {
+            "typelist": "ContactCreationApprovalStatus"
+          }
+        },
+        "dateOfBirth": {
+          "title": "Date of birth",
+          "description": "The person's date of birth. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "format": "date",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "before": "now",
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "displayName": {
+          "title": "Display name",
+          "description": "A formatted representation of the full name for this `ABContact', including all applicable fields such as `firstName` or `lastName`",
+          "type": "string",
+          "readOnly": true,
+          "x-gw-nullable": true
+        },
+        "emailAddress1": {
+          "title": "Email address 1",
+          "description": "The contact's primary email address",
+          "type": "string",
+          "x-gw-nullable": true
+        },
+        "emailAddress2": {
+          "title": "Email address 2",
+          "description": "The contact's secondary email address",
+          "type": "string",
+          "x-gw-nullable": true
+        },
+        "faxPhone": {
+          "title": "Fax phone",
+          "description": "The contact's fax phone number",
+          "$ref": "#/definitions/PhoneNumber",
+          "x-gw-nullable": true
+        },
+        "firstName": {
+          "title": "First name",
+          "description": "The persons's first name. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "homePhone": {
+          "title": "Home phone",
+          "description": "The person's home phone number. Only applicable for an `ABContact` that represents a person.",
+          "$ref": "#/definitions/PhoneNumber",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "id": {
+          "title": "ID",
+          "description": "The unique identifier of this `ABContact`",
+          "type": "string",
+          "readOnly": true
+        },
+        "lastName": {
+          "title": "Last name",
+          "description": "The person's last name. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "licenseNumber": {
+          "title": "Driver's license number",
+          "description": "The person's driver's license number. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "licenseState": {
+          "title": "Driver's license state",
+          "description": "The person's driver's license state. Only applicable for an `ABContact` that represents a person.",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson",
+            "typelist": "Jurisdiction"
+          }
+        },
+        "linkID": {
+          "title": "Link id",
+          "description": "The ID used by client applications to link with the ContactManager",
+          "type": "string",
+          "x-gw-extensions": {
+            "filterable": true
+          }
+        },
+        "middleName": {
+          "title": "Middle name",
+          "description": "The person's middle name. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "name": {
+          "title": "Name",
+          "description": "The name of the company or the place represented by this `ABContact`. Only applicable for an `ABContact` that represents a company or a place.",
+          "type": "string",
+          "x-gw-extensions": {
+            "entitySubtype": [
+              "ABCompany",
+              "ABPlace"
+            ]
+          }
+        },
+        "notes": {
+          "title": "Notes",
+          "description": "Comments about this `ABContact`",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "filterable": true
+          }
+        },
+        "preferred": {
+          "title": "Preferred",
+          "description": "A `true` value for this field indicates that the vendor is one of the insurer's preferred vendors. Only applicable for an `ABContact` that represents a vendor.",
+          "type": "boolean",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": [
+              "ABCompanyVendor",
+              "ABPersonVendor"
+            ],
+            "filterable": true
+          }
+        },
+        "prefix": {
+          "title": "Prefix",
+          "description": "The name prefix of the contact. Only applicable for an `ABContact` that represents a person.",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson",
+            "typelist": "NamePrefix"
+          }
+        },
+        "primaryAddress": {
+          "title": "Primary address",
+          "description": "The contact's primary address",
+          "$ref": "#/definitions/SimpleReference",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "resourceType": "ABContactAddress"
+          }
+        },
+        "primaryPhone": {
+          "title": "Primary phone",
+          "description": "The contact's primary phone number, as determined by the type of phone number selected in the `primaryPhoneType` field",
+          "type": "string",
+          "readOnly": true
+        },
+        "primaryPhoneType": {
+          "title": "Primary phone type",
+          "description": "The type of the contact's primary phone, such as `home` or `mobile`. Only applicable for an `ABContact` that represents a person.",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson",
+            "typelist": "PrimaryPhoneType"
+          }
+        },
+        "score": {
+          "title": "Score",
+          "description": "The overall review score for this `ABContact`",
+          "type": "integer",
+          "readOnly": true,
+          "x-gw-sinceVersion": "1.3.0"
+        },
+        "services": {
+          "title": "Services",
+          "description": "The vendor services assigned to this `ABContact`",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecialistService"
+          }
+        },
+        "suffix": {
+          "title": "Suffix",
+          "description": "The name suffix of the contact. Only applicable for an `ABContact` that represents a person.",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson",
+            "typelist": "NameSuffix"
+          }
+        },
+        "tags": {
+          "title": "Tags",
+          "description": "The list of `ContactTag` tags for this `ABContact`",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContactTag"
+          },
+          "minItems": 1,
+          "x-gw-extensions": {
+            "requiredForCreate": true
+          }
+        },
+        "taxId": {
+          "title": "Tax ID",
+          "description": "The contact's tax ID. Only applicable for an `ABContact` that represents a company or a person.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "entitySubtype": [
+              "ABCompany",
+              "ABPerson"
+            ],
+            "sortable": true
+          }
+        },
+        "vendorAvailability": {
+          "title": "Vendor availability",
+          "description": "The availability of a vendor contact",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-nullable": true,
+          "x-gw-extensions": {
+            "typelist": "VendorAvailabilityType"
+          }
+        },
+        "workPhone": {
+          "title": "Work phone",
+          "description": "The contact's work phone number, if this `ABContact` represents a person, or the business's phone number, if this `ABContact` represents a company",
+          "$ref": "#/definitions/PhoneNumber",
+          "x-gw-nullable": true
+        }
+      }
+    },
+    "CodeReference": {
+      "title": "Code reference",
+      "description": "A reference object that combines a code with a human-readable name",
+      "type": "object",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "description": "The referenced code",
+          "type": "string"
+        },
+        "displayName": {
+          "title": "Display name",
+          "description": "The name of the reference",
+          "type": "string"
+        }
+      }
+    },
+    "ContactSearchRequestAttributes": {
+      "title": "Contact search request attributes",
+      "description": "Criteria of the contact to search for",
+      "type": "object",
+      "required": [
+        "contactSubtype"
+      ],
+      "properties": {
+        "allTagsRequired": {
+          "title": "All tags required",
+          "description": "A `true` value indicates a contact must have all the specified tags to be included in the search results. A `false` value indicates a contact must have at least one of the specified tags to be included in the search results.",
+          "type": "boolean"
+        },
+        "contactSubtype": {
+          "title": "Contact subtype",
+          "description": "The subtype of the contact",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-extensions": {
+            "typelist": "ABContact"
+          }
+        },
+        "coordinates": {
+          "title": "Coordinates",
+          "description": "The latitude and longitude of an address",
+          "$ref": "#/definitions/SpatialPoint"
+        },
+        "firstName": {
+          "title": "First name",
+          "description": "The first name of the contact",
+          "type": "string"
+        },
+        "lastName": {
+          "title": "Last name",
+          "description": "The last name of the contact",
+          "type": "string"
+        },
+        "minimumScore": {
+          "title": "Minimum score",
+          "description": "The value that a contact's score must be equal to or greater than to be included in the search results",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "name": {
+          "title": "Name",
+          "description": "The name of the contact",
+          "type": "string"
+        },
+        "organizationName": {
+          "title": "Organization name",
+          "description": "The name of the contact's employer",
+          "type": "string"
+        },
+        "radius": {
+          "title": "Radius",
+          "description": "The radius of a proximity search",
+          "type": "integer",
+          "minimum": 1
+        },
+        "services": {
+          "title": "Services",
+          "description": "The vendor services assigned to the contact",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecialistService"
+          }
+        },
+        "tags": {
+          "title": "Tags",
+          "description": "The list of `ContactTag` tags of the contact",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContactTag"
+          }
+        },
+        "taxId": {
+          "title": "Tax ID",
+          "description": "The `taxId` of the contact",
+          "type": "string"
+        },
+        "unitOfDistance": {
+          "title": "Unit of distance",
+          "description": "The `unitOfDistance` to use for proximity searches",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-extensions": {
+            "typelist": "UnitOfDistance"
+          }
+        }
+      }
+    },
+    "ContactTag": {
+      "title": "Contact tag",
+      "description": "A tag that identifies a broad relationship that the contact has with the insurer, such as client or vendor",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "title": "Type",
+          "description": "The type of this `ContactTag`",
+          "$ref": "#/definitions/TypeKeyReference",
+          "x-gw-extensions": {
+            "typelist": "ContactTagType"
+          }
+        }
+      }
+    },
+    "SpecialistService": {
+      "title": "Specialist service",
+      "description": "A service that a vendor contact is able to provide",
+      "type": "object",
+      "properties": {
+        "active": {
+          "title": "Active",
+          "description": "A `true` value indicates that this service is active for the specialist and can be used for new service requests",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "code": {
+          "title": "Code",
+          "description": "A unique code identifying the service",
+          "type": "string",
+          "x-gw-extensions": {
+            "createOnly": true
+          }
+        },
+        "description": {
+          "title": "Description",
+          "description": "A description of the service",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "The name of the service",
+          "type": "string",
+          "readOnly": true
+        },
+        "parent": {
+          "title": "Parent",
+          "description": "A reference to the service code that is the parent of this service code",
+          "$ref": "#/definitions/CodeReference",
+          "readOnly": true,
+          "x-gw-extensions": {
+            "resourceType": "SpecialistService"
+          }
+        }
+      }
+    }
+  }
+}

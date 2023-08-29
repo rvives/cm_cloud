@@ -1,0 +1,44 @@
+package pcfc.expressions
+
+uses pcf.*
+uses entity.*
+uses typekey.*
+uses gw.api.locale.DisplayKey
+@javax.annotation.processing.Generated("config/web/pcf/entrypoints/MultiClusterEntry.pcf", "", "com.guidewire.pcfgen.PCFClassGenerator")
+class MultiClusterEntryEntryPointExpressions {
+  @javax.annotation.processing.Generated("config/web/pcf/entrypoints/MultiClusterEntry.pcf", "", "com.guidewire.pcfgen.PCFClassGenerator")
+  public static class MultiClusterEntryExpressionsImpl extends gw.api.web.ScopeBaseClass {
+    public construct(widget :  Object) {
+      super(widget, 0)
+    }
+    
+    protected construct(widget :  Object, scopeDepth :  int) {
+      super(widget, scopeDepth)
+    }
+    
+    // 'location' attribute on EntryPoint (id=MultiClusterEntry) at MultiClusterEntry.pcf: line 7, column 77
+    function location_0 () : pcf.api.Destination {
+      return pcf.MultiClusterForward.createDestination(locationKey, Boolean.valueOf(goToGroup))
+    }
+    
+    property get goToGroup () : String {
+      return getVariableValue("goToGroup", 0) as String
+    }
+    
+    property set goToGroup ($arg :  String) {
+      setVariableValue("goToGroup", 0, $arg)
+    }
+    
+    property get locationKey () : String {
+      return getVariableValue("locationKey", 0) as String
+    }
+    
+    property set locationKey ($arg :  String) {
+      setVariableValue("locationKey", 0, $arg)
+    }
+    
+    
+  }
+  
+  
+}

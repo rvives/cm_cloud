@@ -1,0 +1,8 @@
+version: '2.0'
+apiConfigs:
+  - ext.common.v1.common_ext-1.0
+viewExcludedEventPatterns:
+  - .*Removed
+destinationIds:
+  - 500
+adminEventDestinationId: 599

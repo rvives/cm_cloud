@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Contains-Sources: true
+Maven-Coordinates: contactmanager.modules:configuration:jar::50.6.0
+

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<nonPersistentEntity
+  xmlns="http://guidewire.com/datamodel"
+  entity="ABContactSearchCriteriaOfficialID"
+  extendable="true">
+  <implementsInterface
+    iface="gw.ab.addressbook.entity.ABContactSearchCriteriaOfficialID"
+    impl="com.guidewire.ab.domain.addressbook.impl.ABContactSearchCriteriaOfficialIDImpl"/>
+  <typekey
+    name="OfficialIDType"
+    nullok="false"
+    typelist="OfficialIDType"/>
+  <column
+    name="OfficialIDValue"
+    nullok="false"
+    type="shorttext"/>
+  <typekey
+    name="State"
+    nullok="true"
+    typelist="Jurisdiction"/>
+  <foreignkey
+    columnName="ABContactSearchCriteriaID"
+    desc="ABContactSearchCriteria"
+    fkentity="ABContactSearchCriteria"
+    name="ABContactSearchCriteria"
+    nullok="false"
+    setterScriptability="hidden"/>
+</nonPersistentEntity>

@@ -1,0 +1,252 @@
+{
+  "schemaName": "gw.core.ab.contact.v1.contact_core-1.0",
+  "combine": [
+    "gw.core.ab.common.v1.common_core-1.0",
+    "gw.core.ab.framework.v1.framework_core-1.0"
+  ],
+  "typeUses": [
+    "gw.rest.core.ab.contact.v1.contact.SpecialistServiceJsonValueResolver",
+    "gw.rest.core.pl.common.v1.phone.PhoneNumberResolver"
+  ],
+  "updaters": {
+    "ABContact": {
+      "schemaDefinition": "ABContact",
+      "root": "entity.ABContact",
+      "properties": {
+        "cellPhone": {
+          "path": "(ABContact as ABPerson).RestV1_CellPhone",
+          "setter": "(ABContact as ABPerson).RestV1_setPhoneNumber(entity.ABPerson#CellPhone, value)",
+          "valueResolver": {
+            "typeName": "PhoneNumberResolver"
+          }
+        },
+        "contactSubtype": {
+          //this field is ignored, but is present in order to trigger createOnly validation of the field
+          "ignore": "true"
+        },
+        "dateOfBirth": {
+          "path": "(ABContact as ABPerson).RestV1_DateOfBirth"
+        },
+        "displayName": {
+          "path": "ABContact.DisplayName"
+        },
+        "emailAddress1": {
+          "path": "ABContact.EmailAddress1"
+        },
+        "emailAddress2": {
+          "path": "ABContact.EmailAddress2"
+        },
+        "faxPhone": {
+          "path": "ABContact.RestV1_FaxPhone",
+          "setter": "ABContact.RestV1_setPhoneNumber(entity.ABContact#FaxPhone, value)",
+          "valueResolver": {
+            "typeName": "PhoneNumberResolver"
+          }
+        },
+        "firstName": {
+          "path": "(ABContact as ABPerson).FirstName"
+        },
+        "homePhone": {
+          "path": "ABContact.RestV1_HomePhone",
+          "setter": "ABContact.RestV1_setPhoneNumber(entity.ABContact#HomePhone, value)",
+          "valueResolver": {
+            "typeName": "PhoneNumberResolver"
+          }
+        },
+        "id": {
+          "path": "ABContact.RestId"
+        },
+        "lastName": {
+          "path": "(ABContact as ABPerson).LastName"
+        },
+        "licenseNumber": {
+          "path": "(ABContact as ABPerson).LicenseNumber"
+        },
+        "licenseState": {
+          "path": "(ABContact as ABPerson).LicenseState",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "linkID": {
+          "path": "ABContact.LinkID"
+        },
+        "middleName": {
+          "path": "(ABContact as ABPerson).MiddleName"
+        },
+        "name": {
+          "path": "ABContact.Name"
+        },
+        "notes": {
+          "path": "ABContact.Notes"
+        },
+        "preferred": {
+          "path": "ABContact.Preferred"
+        },
+        "prefix": {
+          "path": "(ABContact as ABPerson).Prefix",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "primaryAddress": {
+          "path": "ABContact.PrimaryAddress",
+          "setter": "ABContact.makePrimaryAddress(value)",
+          "valueResolver": {
+            "typeName": "gw.rest.core.ab.contact.v1.contact.address.ABContactAddressJsonValueResolver"
+          }
+        },
+        "primaryPhone": {
+          "path": "ABContact.PrimaryPhoneValue"
+        },
+        "primaryPhoneType": {
+          "path": "ABContact.PrimaryPhone",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "services": {
+          "path": "ABContact.SpecialistServices",
+          "items": {
+            "add": "ABContact.RestV1_addSpecialistServices(value)",
+            "remove": "ABContact.RestV1_removeFromSpecialistServices(value)",
+            "jsonKey": "jsonValue.get('code')",
+            "valueKey": "value.Code",
+            "valueResolver": {
+              "typeName": "gw.rest.core.ab.contact.v1.contact.SpecialistServiceJsonValueResolver"
+            }
+          }
+        },
+        "suffix": {
+          "path": "(ABContact as ABPerson).Suffix",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "tags": {
+          "path": "ABContact.Tags",
+          "items": {
+            "add": "ABContact.addToTags(value)",
+            "create": "new ABContactTag(ABContact)",
+            "remove": "ABContact.removeFromTags(value)",
+            "jsonKey": "jsonValue.getObject('type').get('code')",
+            "valueKey": "value.Type.Code",
+            "updaterRef": "#/updaters/ContactTag"
+          },
+          "postUpdateValidators": [
+            {
+              "typeName": "gw.rest.core.ab.contact.v1.contact.ContactTagPostUpdateValidator"
+            }
+          ]
+        },
+        "taxId": {
+          "path": "ABContact.TaxID"
+        },
+        "vendorAvailability": {
+          "path": "ABContact.VendorAvailability",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "workPhone": {
+          "path": "ABContact.RestV1_WorkPhone",
+          "setter": "ABContact.RestV1_setPhoneNumber(entity.ABContact#WorkPhone, value)",
+          "valueResolver": {
+            "typeName": "PhoneNumberResolver"
+          }
+        }
+      }
+    },
+    "ContactSearch": {
+      "schemaDefinition": "ContactSearchRequestAttributes",
+      "root": "entity.ABContactSearchCriteria",
+      "properties": {
+        "allTagsRequired": {
+          "path": "ABContactSearchCriteria.AllTagsRequired"
+        },
+        "contactSubtype": {
+          "path": "ABContactSearchCriteria.ContactSubtype",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        },
+        "coordinates": {
+          "path": "ABContactSearchCriteria.ProximitySearchParameters.SpatialPoint",
+          "valueResolver": {
+            "typeName": "SpatialPointValueResolver"
+          }
+        },
+        "firstName": {
+          "path": "ABContactSearchCriteria.FirstName"
+        },
+        "lastName": {
+          "path": "ABContactSearchCriteria.Keyword"
+        },
+        "minimumScore": {
+          "path": "ABContactSearchCriteria.Score"
+        },
+        "name": {
+          "path": "ABContactSearchCriteria.Keyword"
+        },
+        "organizationName": {
+          "path": "ABContactSearchCriteria.OrganizationName"
+        },
+        "radius": {
+          "path": "ABContactSearchCriteria.ProximitySearchParameters.Number"
+        },
+        "services": {
+          "path": "ABContactSearchCriteria.SpecialistServices*.SpecialistService",
+          "items": {
+            "add": "ABContactSearchCriteria.addToSpecialistServices(new ABContactSearchCriteriaSpecialistService(ABContactSearchCriteria) { :SpecialistService = value })",
+            "valueResolver": {
+              "typeName": "SpecialistServiceJsonValueResolver"
+            }
+          }
+        },
+        "tags": {
+          "path": "ABContactSearchCriteria.Tags",
+          "items": {
+            "add": "ABContactSearchCriteria.addToTags(value)",
+            "create": "new ABContactSearchCriteriaTag(ABContactSearchCriteria)",
+            "jsonKey": "jsonValue.getObject('type').get('code')",
+            "valueKey": "value.Type.Code",
+            "updaterRef": "#/updaters/ContactSearchCriteriaTag"
+          }
+        },
+        "taxId": {
+          "path": "ABContactSearchCriteria.TaxID"
+        },
+        "unitOfDistance": {
+          "path": "ABContactSearchCriteria.ProximitySearchParameters.UnitOfDistance",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        }
+      }
+    },
+    "ContactSearchCriteriaTag": {
+      "schemaDefinition": "ContactTag",
+      "root": "entity.ABContactSearchCriteriaTag",
+      "properties": {
+        "type": {
+          "path": "ABContactSearchCriteriaTag.Type",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        }
+      }
+    },
+    "ContactTag": {
+      "schemaDefinition": "ContactTag",
+      "root": "entity.ABContactTag",
+      "properties": {
+        "type": {
+          "path": "ABContactTag.Type",
+          "valueResolver": {
+            "typeName": "TypeKeyValueResolver"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+resources:
+  TestUtilContact:
+    permissions:
+      view: false
+      edit: false
+      add-pending-contact-update: false
+      add-related-contact: false
+  TestUtilGroup:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  TestUtilGroups:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  TestUtilOpenApiSchema:
+    permissions:
+      view: true
+  TestUtilRoles:
+    permissions:
+      view: false
+      create: false
+    filter: __noFilter
+  TestUtilSpecialistService:
+    permissions:
+      view: false
+  TestUtilSpecialistServices:
+    permissions:
+      view: false
+      create: false
+    filter: __noFilter

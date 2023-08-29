@@ -1,0 +1,436 @@
+swagger: "2.0"
+info:
+  title: "Contact API"
+  description: "APIs for InsuranceSuite contact objects"
+  version: "1.5.0"
+basePath: /contact/v1
+consumes:
+- application/json
+produces:
+- application/json
+x-gw-combine:
+- gw.core.ab.framework.v1.framework_core-1.0
+x-gw-schema-combine:
+- gw.core.ab.common.v1.common_core-1.0
+x-gw-schema-import:
+  contact: gw.core.ab.contact.v1.contact_core-1.0
+paths:
+  /contacts:
+    get:
+      summary: "Get the collection of contacts"
+      description: "Get the collection of contacts"
+      operationId: getContacts
+      x-gw-extensions:
+        childResourceType: ABContact
+        operationType: get-collection
+        resourceType: ABContacts
+      x-gw-parameter-sets:
+      - get-collection
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ContactList"
+    post:
+      summary: "Create a new contact"
+      description: "Create a new contact"
+      operationId: createContact
+      x-gw-extensions:
+        childResourceType: ABContact
+        operationType: post-collection
+        resourceType: ABContacts
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/ContactRequest"
+      x-gw-parameter-sets:
+      - post-collection
+      responses:
+        "201":
+          description: "Successfully created"
+          schema:
+            $ref: "#/definitions/ContactResponse"
+  "/contacts/{contactId}":
+    parameters:
+    - $ref: "#/parameters/contactId"
+    get:
+      summary: "The details of a specific contact"
+      description: "The details of a specific contact"
+      operationId: getContact
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: ABContact
+      x-gw-parameter-sets:
+      - get-element
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ContactResponse"
+    patch:
+      summary: "Update the details of the specific contact"
+      description: "Update the details of the specific contact"
+      operationId: patchContact
+      x-gw-extensions:
+        operationType: patch-element
+        resourceType: ABContact
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/ContactRequest"
+      x-gw-parameter-sets:
+      - patch-element
+      responses:
+        "200":
+          description: "Successfully updated"
+          schema:
+            $ref: "#/definitions/ContactResponse"
+    delete:
+      summary: "Delete a contact"
+      description: "Delete a contact"
+      operationId: deleteContact
+      x-gw-extensions:
+        operationType: delete-element
+        resourceType: ABContact
+      x-gw-parameter-sets:
+      - delete-element
+      responses:
+        "204":
+          description: "Successful deletion"
+  "/contacts/{contactId}/addresses":
+    parameters:
+    - $ref: "#/parameters/contactId"
+    get:
+      summary: "Get the collection of addresses for a given contact"
+      description: "Get the collection of addresses for a given contact"
+      operationId: getContactAddresses
+      x-gw-extensions:
+        childResourceType: ABContactAddress
+        operationType: get-collection
+        resourceType: ABContactAddresses
+      x-gw-parameter-sets:
+      - get-collection
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/AddressList"
+    post:
+      summary: "Create a new address for the given contact"
+      description: "Create a new address for the given contact"
+      operationId: createContactAddress
+      x-gw-extensions:
+        childResourceType: ABContactAddress
+        operationType: post-collection
+        resourceType: ABContactAddresses
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/ContactAddressRequest"
+      x-gw-parameter-sets:
+      - post-collection
+      responses:
+        "201":
+          description: "Successfully created"
+          schema:
+            $ref: "#/definitions/ContactAddressResponse"
+  "/contacts/{contactId}/addresses/{addressId}":
+    parameters:
+    - $ref: "#/parameters/contactId"
+    - $ref: "#/parameters/addressId"
+    get:
+      summary: "The details of a specific address on the given contact"
+      description: "The details of a specific address on the given contact"
+      operationId: getContactAddress
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: ABContactAddress
+      x-gw-parameter-sets:
+      - get-element
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ContactAddressResponse"
+    patch:
+      summary: "Update the details of the specific address on the given contact"
+      description: "Update the details of the specific address on the given contact"
+      operationId: patchContactAddress
+      x-gw-extensions:
+        operationType: patch-element
+        resourceType: ABContactAddress
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/ContactAddressRequest"
+      x-gw-parameter-sets:
+      - patch-element
+      responses:
+        "200":
+          description: "Successfully updated"
+          schema:
+            $ref: "#/definitions/ContactAddressResponse"
+    delete:
+      summary: "Delete an address on the given contact"
+      description: "Delete an address on the given contact"
+      operationId: deleteContactAddress
+      x-gw-extensions:
+        operationType: delete-element
+        resourceType: ABContactAddress
+      x-gw-parameter-sets:
+      - delete-element
+      responses:
+        "204":
+          description: "Successful deletion"
+  "/contacts/{contactId}/documents":
+    parameters:
+    - $ref: "#/parameters/contactId"
+    get:
+      summary: "Get the collection of documents on a contact"
+      description: "Get the collection of documents on a contact"
+      operationId: getContactDocuments
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        childResourceType: Document
+        operationType: get-collection
+        resourceType: ABContactDocuments
+      x-gw-parameter-sets:
+      - get-collection
+      responses:
+        "200":
+          description: "Successful response"
+          schema:
+            $ref: "#/definitions/DocumentList"
+    post:
+      summary: "Create a new document on a contact"
+      description: "Create a new document on a contact"
+      operationId: createContactDocument
+      consumes:
+      - multipart/form-data
+      x-gw-sinceVersion: "1.4.0"
+      x-gw-extensions:
+        childResourceType: Document
+        operationType: post-collection
+        resourceType: ABContactDocuments
+      parameters:
+      - name: metadata
+        in: formData
+        required: true
+        type: string
+        x-gw-schema-ref: "#/definitions/DocumentRequest"
+      - name: content
+        in: formData
+        type: file
+      x-gw-parameter-sets:
+      - post-collection
+      responses:
+        "201":
+          description: "Successfully created"
+          schema:
+            $ref: "#/definitions/DocumentResponse"
+  /openapi.json:
+    get:
+      summary: "Return the Open API 3.0 representation of the schema"
+      description: "Return the Open API 3.0 representation of the schema"
+      operationId: getOpenApiSchema
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: ContactOpenApiSchema
+      x-gw-parameter-sets:
+      - openapi
+      responses:
+        "200":
+          description: "Successful response"
+          schema:
+            type: string
+  /search/contacts:
+    post:
+      summary: "Searches for contacts that match the specified criteria"
+      description: "Searches for contacts that match the specified criteria"
+      operationId: searchContacts
+      x-gw-extensions:
+        childResourceType: ABContact
+        operationType: search-collection
+        resourceType: ContactSearch
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/ContactSearchRequest"
+      - $ref: "#/parameters/includePendingCreates"
+      x-gw-parameter-sets:
+      - search-collection
+      responses:
+        "200":
+          description: "Returns a list of contacts that match the search criteria"
+          schema:
+            $ref: "#/definitions/ContactList"
+parameters:
+  addressId:
+    name: addressId
+    in: path
+    description: "The identifier for the address"
+    required: true
+    type: string
+  contactId:
+    name: contactId
+    in: path
+    description: "The identifier for the contact"
+    required: true
+    type: string
+  includePendingCreates:
+    name: includePendingCreates
+    in: query
+    description: "Should pending create contacts be included in search"
+    type: boolean
+x-gw-cors-policy: contact
+x-gw-localizationKeyPrefix: contact.v1
+definitions:
+  # Replicated definitions in common_pl
+  AddressData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "contact#/definitions/Address"
+  AddressList:
+    type: object
+    x-gw-extend:
+    - "#/definitions/DataListEnvelope"
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/AddressData"
+  ContactAddressRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/AddressData"
+  ContactAddressResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/AddressData"
+  ContactData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "contact#/definitions/ABContact"
+  ContactList:
+    type: object
+    x-gw-extend:
+    - "#/definitions/DataListEnvelope"
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/ContactData"
+      included:
+        $ref: "#/definitions/ContactResponseInclusions"
+  ContactRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/ContactData"
+      included:
+        $ref: "#/definitions/ContactRequestInclusions"
+  ContactRequestInclusions:
+    type: object
+    properties:
+      ABContactAddress:
+        type: array
+        items:
+          $ref: "#/definitions/AddressData"
+  ContactResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/ContactData"
+      included:
+        $ref: "#/definitions/ContactResponseInclusions"
+  ContactResponseInclusions:
+    type: object
+    properties:
+      ABContactAddress:
+        type: array
+        items:
+          $ref: "#/definitions/AddressData"
+  ContactSearchRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/ContactSearchRequestData"
+  ContactSearchRequestData:
+    type: object
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "contact#/definitions/ContactSearchRequestAttributes"
+  DocumentContentData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "#/definitions/DocumentContent"
+  DocumentData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "#/definitions/Document"
+  DocumentList:
+    type: object
+    x-gw-extend:
+    - "#/definitions/DataListEnvelope"
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/DocumentData"
+  DocumentRequest:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: "#/definitions/DocumentData"
+  DocumentResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/DocumentData"
+      included:
+        $ref: "#/definitions/DocumentResponseInclusions"
+  DocumentResponseInclusions:
+    type: object
+    properties:
+      DocumentContent:
+        type: array
+        items:
+          $ref: "#/definitions/DocumentContentData"

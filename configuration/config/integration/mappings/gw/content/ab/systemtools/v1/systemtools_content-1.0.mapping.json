@@ -1,0 +1,7 @@
+{
+  "schemaName": "gw.content.ab.systemtools.v1.systemtools_content-1.0",
+  "combine": [
+    "gw.core.ab.systemtools.v1.systemtools_core-1.0"
+  ],
+  "mappers": { }
+}

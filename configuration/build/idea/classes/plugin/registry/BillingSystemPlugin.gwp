@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<plugin interface="ClientSystemPlugin" name="BillingSystemPlugin">
+  <plugin-gosu gosuclass="gw.plugin.billing.bc5040.BCBillingSystemPlugin"/>
+  
+  <!-- Plugin to use when connecting ContactManager to BillingCenter:
+    <plugin-gosu
+      gosuclass="gw.plugin.billing.bc5040.BCBillingSystemPlugin"/>
+  -->
+  <plugin-gosu env="cloud-dev" gosuclass="gw.plugin.billing.bc5040.BCBillingSystemPlugin"/>
+</plugin>

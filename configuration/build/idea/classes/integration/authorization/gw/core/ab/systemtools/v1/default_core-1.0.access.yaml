@@ -1,0 +1,23 @@
+resources:
+  BatchProcess:
+    permissions:
+      view: false
+      edit: false
+      start: false
+      stop: false
+  BatchProcesses:
+    permissions:
+      view: false
+  DatabaseConsistencyCheck:
+    permissions:
+      view: false
+  DatabaseConsistencyCheckReport:
+    permissions:
+      view: false
+  DatabaseConsistencyChecks:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  SystemToolsOpenApiSchema:
+    permissions:
+      view: true

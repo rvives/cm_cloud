@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "x-gw-combine": [
+    "gw.content.ab.common.v1.common_content-1.0",
+    "gw.core.ab.contact.v1.contact_core-1.0"
+  ],
+  "x-gw-localizationKeyPrefix": "contact.v1",
+  "definitions": {
+    "ABContact": {
+      "type": "object",
+      "properties": {
+        "firstNameKanji": {
+          "title": "First name kanji",
+          "description": "The kanji version of the first name of the person represented by this `ABContact`. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-sinceVersion": "1.3.0",
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "lastNameKanji": {
+          "title": "Last name kanji",
+          "description": "The kanji version of the last name of the person represented by this `ABContact`. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-sinceVersion": "1.3.0",
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        },
+        "nameKanji": {
+          "title": "Name kanji",
+          "description": "The kanji version of the name of the company represented by this `ABContact`. Only applicable for an `ABContact` that represents a company or a place.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-sinceVersion": "1.3.0",
+          "x-gw-extensions": {
+            "entitySubtype": [
+              "ABCompany",
+              "ABPlace"
+            ]
+          }
+        },
+        "particle": {
+          "title": "Particle",
+          "description": "The particle portion of the name of the person represented by this `ABContact`. Only applicable for an `ABContact` that represents a person.",
+          "type": "string",
+          "x-gw-nullable": true,
+          "x-gw-sinceVersion": "1.3.0",
+          "x-gw-extensions": {
+            "entitySubtype": "ABPerson"
+          }
+        }
+      }
+    },
+    "ContactSearchRequestAttributes": {
+      "type": "object",
+      "properties": {
+        "firstNameKanji": {
+          "title": "First name kanji",
+          "description": "The kanji version of the first name of the person represented by this `ABContact`. Only applicable when searching for an `ABContact` that represents a person.",
+          "type": "string"
+        },
+        "lastNameKanji": {
+          "title": "Last name kanji",
+          "description": "The kanji version of the last name of the person represented by this `ABContact`. Only applicable when searching for an `ABContact` that represents a person.",
+          "type": "string"
+        },
+        "nameKanji": {
+          "title": "Name kanji",
+          "description": "The kanji version of the name of the company represented by this `ABContact`. Only applicable when searching for an `ABContact` that represents a company or a place.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

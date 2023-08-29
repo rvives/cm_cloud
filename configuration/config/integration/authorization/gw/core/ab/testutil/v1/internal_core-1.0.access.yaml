@@ -1,0 +1,33 @@
+resources:
+  TestUtilContact:
+    permissions:
+      view: true
+      edit: true
+      add-pending-contact-update: true
+      add-related-contact: true
+  TestUtilGroup:
+    permissions:
+      view: true
+      edit: true
+      delete: true
+  TestUtilGroups:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  TestUtilOpenApiSchema:
+    permissions:
+      view: true
+  TestUtilRoles:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter
+  TestUtilSpecialistService:
+    permissions:
+      view: true
+  TestUtilSpecialistServices:
+    permissions:
+      view: true
+      create: true
+    filter: __noFilter

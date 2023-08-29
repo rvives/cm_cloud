@@ -1,0 +1,34 @@
+name: "Contact Manager"
+endpoints:
+- endpoint: /admin/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /async/v1/openapi.json
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*"
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*/response"
+  methods:
+  - GET
+- endpoint: /common/v1/openapi.json
+  methods:
+  - GET
+- endpoint: "/common/v1/documents/**"
+  methods:
+  - "*"
+- endpoint: "/contact/v1/**"
+  methods:
+  - "*"
+- endpoint: /systemtools/v1/openapi.json
+  methods:
+  - GET
+accessibleFields:
+  "*":
+    edit:
+    - "*public"
+    - "*internal"
+    view:
+    - "*public"
+    - "*internal"

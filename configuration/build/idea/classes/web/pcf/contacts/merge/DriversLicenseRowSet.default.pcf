@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <RowSet
+    id="DriversLicenseRowSet"
+    mode="default">
+    <Require
+      name="keptPerson"
+      type="ABPerson"/>
+    <Require
+      name="retiredPerson"
+      type="ABPerson"/>
+    <Require
+      name="mergedPerson"
+      type="ABPerson"/>
+    <Variable
+      initialValue="{keptPerson, retiredPerson, mergedPerson}"
+      name="persons"
+      type="ABPerson[]"/>
+    <Row>
+      <TextCell
+        bold="true"
+        colspan="4"
+        id="driversLicense"
+        value="DisplayKey.get(&quot;Web.Contacts.ReviewDuplicateContacts.DriversLicense&quot;)"/>
+    </Row>
+    <Row>
+      <TextCell
+        id="driversLicenseNumberLabel"
+        value="DisplayKey.get(&quot;Web.ContactDetail.DriversLicense.LicenseNumber&quot;)"/>
+      <CellIterator
+        elementName="aContact"
+        id="driversLicenseNumber"
+        value="persons"
+        valueType="entity.ABPerson[]">
+        <TextCell
+          editable="aContact == mergedPerson"
+          id="driversLicenseNumber"
+          value="aContact.LicenseNumber"/>
+      </CellIterator>
+    </Row>
+    <Row>
+      <TextCell
+        id="driversLicenseStateLabel"
+        value="DisplayKey.get(&quot;Web.ContactDetail.DriversLicense.LicenseState&quot;)"/>
+      <CellIterator
+        elementName="aContact"
+        id="driversLicenseState"
+        value="persons"
+        valueType="entity.ABPerson[]">
+        <TypeKeyCell
+          editable="aContact == mergedPerson"
+          filter="VALUE.hasCategory(JurisdictionType.TC_DRIVING_LIC)"
+          id="driversLicenseState"
+          value="aContact.LicenseState"
+          valueType="typekey.Jurisdiction"/>
+      </CellIterator>
+    </Row>
+  </RowSet>
+</PCF>

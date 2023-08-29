@@ -1,0 +1,171 @@
+{
+  "schemaName": "gw.core.pl.systemtools.v1.systemtools_pl-1.0",
+  "combine": [
+    "gw.core.pl.framework.v1.framework_pl-1.0"
+  ],
+  "mappers": {
+    "BatchProcess": {
+      "schemaDefinition": "BatchProcess",
+      "root": "gw.rest.core.pl.systemtools.v1.batch.BatchProcessSummary",
+      "properties": {
+        "distributed": {
+          "path": "BatchProcessSummary.Distributed"
+        },
+        "processId": {
+          "path": "BatchProcessSummary.ProcessId"
+        },
+        "status": {
+          "path": "BatchProcessSummary.ProcessStatus",
+          "mapper": "#/mappers/ProcessStatus"
+        },
+        "type": {
+          "path": "BatchProcessSummary.Type",
+          "mapper": "#/mappers/TypeKeyReference"
+        },
+        "wasStopped": {
+          "path": "BatchProcessSummary.WasStopped"
+        },
+        "workQueueStatus": {
+          "path": "BatchProcessSummary.WorkQueueStatus",
+          "mapper": "#/mappers/WorkQueueStatus"
+        }
+      }
+    },
+    // Suppress warnings
+    "BatchProcessArguments": {
+      "schemaDefinition": "BatchProcessArguments",
+      "root": "java.lang.Object",
+      "properties": {
+        "dbconsistencycheck": {
+          "path": "null as Object",
+          "mapper": "#/mappers/DBConsistencyCheckArguments"
+        },
+        "purgeAsyncApiRequests": {
+          "path": "null as Object",
+          "mapper": "#/mappers/PurgeAsyncApiRequestsArguments"
+        }
+      }
+    },
+    // Suppress warnings
+    "DBConsistencyCheckArguments": {
+      "schemaDefinition": "DBConsistencyCheckArguments",
+      "root": "java.lang.Object",
+      "properties": {
+        "checkTypes": {
+          "path": "null as String[]"
+        },
+        "description": {
+          "path": "null as String"
+        },
+        "rerunKey": {
+          "path": "0"
+        },
+        "tableNames": {
+          "path": "null as String[]"
+        }
+      }
+    },
+    "DatabaseConsistencyCheck": {
+      "schemaDefinition": "DatabaseConsistencyCheck",
+      "root": "entity.DBConsistCheckRun",
+      "properties": {
+        "description": {
+          "path": "DBConsistCheckRun.Description"
+        },
+        "duration": {
+          "path": "DBConsistCheckRun.Duration"
+        },
+        "endTime": {
+          "path": "DBConsistCheckRun.EndTime"
+        },
+        "errors": {
+          "path": "DBConsistCheckRun.NumErrorExecs"
+        },
+        "extensionsSchemaVersion": {
+          "path": "DBConsistCheckRun.ExtensionsSchemaVersion"
+        },
+        "id": {
+          "path": "DBConsistCheckRun.RestId"
+        },
+        "key": {
+          "path": "DBConsistCheckRun.ID.Value"
+        },
+        "majorSchemaVersion": {
+          "path": "DBConsistCheckRun.MajorSchemaVersion"
+        },
+        "minorSchemaVersion": {
+          "path": "DBConsistCheckRun.MinorSchemaVersion"
+        },
+        "platformMajorSchemaVersion": {
+          "path": "DBConsistCheckRun.PlatformMajorSchemaVersion"
+        },
+        "platformMinorSchemaVersion": {
+          "path": "DBConsistCheckRun.PlatformMinorSchemaVersion"
+        },
+        "startTime": {
+          "path": "DBConsistCheckRun.StartTime"
+        },
+        "totalChecks": {
+          "path": "DBConsistCheckRun.TotalNumChecks"
+        }
+      }
+    },
+    "ProcessStatus": {
+      "schemaDefinition": "ProcessStatus",
+      "root": "gw.api.webservice.maintenanceTools.ProcessStatus",
+      "properties": {
+        "dateCompleted": {
+          "path": "ProcessStatus.DateCompleted"
+        },
+        "dateCreated": {
+          "path": "ProcessStatus.DateCreated"
+        },
+        "failedOps": {
+          "path": "ProcessStatus.FailedOps"
+        },
+        "failureReason": {
+          "path": "ProcessStatus.FailureReason"
+        },
+        "opsCompleted": {
+          "path": "ProcessStatus.OpsCompleted"
+        },
+        "opsExpected": {
+          "path": "ProcessStatus.OpsExpected"
+        },
+        "progress": {
+          "path": "ProcessStatus.Progress"
+        },
+        "serverId": {
+          "path": "ProcessStatus.ServerId"
+        },
+        "startDate": {
+          "path": "ProcessStatus.StartDate"
+        },
+        "type": {
+          "path": "ProcessStatus.Type"
+        }
+      }
+    },
+    "PurgeAsyncApiRequestsArguments": {
+      "schemaDefinition": "PurgeAsyncApiRequestsArguments",
+      "root": "java.lang.Object",
+      "properties": {
+        "purgeDaysOld": {
+          "path": "null as Integer"
+        }
+      }
+    },
+    "WorkQueueStatus": {
+      "schemaDefinition": "WorkQueueStatus",
+      "root": "gw.api.webservice.maintenanceTools.WQueueStatus",
+      "properties": {
+        "numActiveExecutors": {
+          "path": "WQueueStatus.NumActiveExecutors"
+        },
+        "numActiveWorkItems": {
+          "path": "WQueueStatus.NumActiveWorkItems"
+        }
+      }
+    }
+  }
+}

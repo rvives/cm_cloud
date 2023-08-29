@@ -1,0 +1,8 @@
+{
+  "schemaName": "ext.contact.v1.contact_ext-1.0",
+  "combine": [
+    "ext.common.v1.common_ext-1.0",
+    "gw.content.ab.contact.v1.contact_content-1.0"
+  ],
+  "updaters": { }
+}

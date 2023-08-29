@@ -1,0 +1,141 @@
+combine:
+- gw.core.pl.common.v1.common_pl-1.0
+resources:
+  ABContact:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  ABContactAddress:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  ABContactAddresses:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  ABContactDocuments:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  ABContacts:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Activities:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Activity:
+    permissions:
+      view: false
+      edit: false
+      approve: false
+      assign: false
+      complete: false
+      skip: false
+  ActivityAssignees:
+    permissions:
+      view: false
+  ActivityNotes:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  ActivityPattern:
+    permissions:
+      view: false
+  ActivityPatterns:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  AdminOpenApiSchema:
+    permissions:
+      view: true
+  AssignableQueue:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  AssignableQueues:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Assignee:
+    permissions:
+      view: false
+  ContactOpenApiSchema:
+    permissions:
+      view: true
+  ContactSearch:
+    permissions:
+      view: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Document:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  DocumentContent:
+    permissions:
+      view: false
+  Group:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  GroupUser:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  GroupUsers:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Groups:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Note:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  Role:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  RolePermission:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  RolePermissions:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  Roles:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter
+  User:
+    permissions:
+      view: false
+      edit: false
+      delete: false
+  Users:
+    permissions:
+      view: false
+      create: false
+    filter: gw.rest.core.ab.security.NoPermissionsQueryFilter

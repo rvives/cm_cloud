@@ -1,0 +1,239 @@
+swagger: "2.0"
+info:
+  title: "System Tools API"
+  description: "APIs for InsuranceSuite system tools"
+  version: "1.5.0"
+basePath: /systemtools/v1
+consumes:
+- application/json
+produces:
+- application/json
+x-gw-combine:
+- gw.core.pl.framework.v1.framework_pl-1.0
+x-gw-schema-import:
+  systemtools: gw.core.pl.systemtools.v1.systemtools_pl-1.0
+paths:
+  /batch-processes:
+    get:
+      summary: "Retrieve information about all batch processes"
+      description: "Retrieve information about all batch processes"
+      operationId: getBatchProcesses
+      produces:
+      - application/json
+      x-gw-sinceVersion: "1.5.0"
+      x-gw-extensions:
+        childResourceType: BatchProcess
+        operationType: get-collection
+        resourceType: BatchProcesses
+      x-gw-parameter-sets:
+      - get-collection
+      responses:
+        "200":
+          description: "The paginated list of `BatchProcess` elements"
+          schema:
+            $ref: "#/definitions/BatchProcessList"
+  "/batch-processes/{batchProcessType}":
+    parameters:
+    - $ref: "#/parameters/batchProcessType"
+    get:
+      summary: "Retrieve details of a batch process"
+      description: "Retrieves a batch process by its type name. A batch process is an automated process that can be run in the background."
+      operationId: getBatchProcess
+      x-gw-sinceVersion: "1.5.0"
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: BatchProcess
+      x-gw-parameter-sets:
+      - get-element
+      responses:
+        "200":
+          description: "The details of the batch process"
+          schema:
+            $ref: "#/definitions/BatchProcessResponse"
+  "/batch-processes/{batchProcessType}/start":
+    parameters:
+    - $ref: "#/parameters/batchProcessType"
+    post:
+      summary: "Starts the batch process"
+      description: "Starts the batch process. If the batch process was already running, no new process is started. The response will indicate whether a new process was actually started, based on whether the `processId` property is populated."
+      operationId: startBatchProcess
+      x-gw-sinceVersion: "1.5.0"
+      x-gw-extensions:
+        operationType: custom-action
+        resourceType: BatchProcess
+      parameters:
+      - name: body
+        in: body
+        required: false
+        schema:
+          $ref: "#/definitions/BatchProcessStartRequest"
+      x-gw-parameter-sets:
+      - custom-action
+      responses:
+        "200":
+          description: "Returns the batch process details. The new process id is populated if the batch process was not already running."
+          schema:
+            $ref: "#/definitions/BatchProcessResponse"
+  "/batch-processes/{batchProcessType}/stop":
+    parameters:
+    - $ref: "#/parameters/batchProcessType"
+    post:
+      summary: "Stops the batch process"
+      description: "Stops the batch process. If the batch process was not already running, this has no effect. The response will indicate whether this call actually stopped the batch process, based on the `wasStopped` property."
+      operationId: stopBatchProcess
+      x-gw-sinceVersion: "1.5.0"
+      x-gw-extensions:
+        operationType: custom-action
+        resourceType: BatchProcess
+      x-gw-parameter-sets:
+      - custom-action
+      responses:
+        "200":
+          description: "Returns the batch process details"
+          schema:
+            $ref: "#/definitions/BatchProcessResponse"
+  /database-consistency-checks:
+    get:
+      summary: "Retrieves a list of consistency check runs"
+      description: "Retrieves a list of consistency check runs"
+      operationId: getDatabaseConsistencyChecks
+      x-gw-sinceVersion: "1.5.0"
+      x-gw-extensions:
+        childResourceType: DatabaseConsistencyCheck
+        operationType: get-collection
+        resourceType: DatabaseConsistencyChecks
+      x-gw-parameter-sets:
+      - get-collection
+      responses:
+        "200":
+          description: "The list of consistency check runs"
+          schema:
+            $ref: "#/definitions/DatabaseConsistencyCheckList"
+  "/database-consistency-checks/{dbccId}":
+    parameters:
+    - $ref: "#/parameters/dbccId"
+    get:
+      summary: "Retrieve details of a consistency check run"
+      description: "Retrieve details of a consistency check run"
+      operationId: getDatabaseConsistencyCheck
+      x-gw-sinceVersion: "1.5.0"
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: DatabaseConsistencyCheck
+      x-gw-parameter-sets:
+      - get-element
+      responses:
+        "200":
+          description: "Details of a consistency check run"
+          schema:
+            $ref: "#/definitions/DatabaseConsistencyCheckResponse"
+  "/database-consistency-checks/{dbccId}/report":
+    get:
+      summary: "Returns the consistency check report in zip file format"
+      description: "Returns the consistency check report in zip file format"
+      operationId: getDatabaseConsistencyReport
+      produces:
+      - application/zip
+      x-gw-sinceVersion: "1.5.0"
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: DatabaseConsistencyCheckReport
+      parameters:
+      - $ref: "#/parameters/dbccId"
+      - name: errorsOnly
+        in: query
+        description: "Whether to include only errors in the consistency check report. Defaults to false."
+        type: boolean
+      responses:
+        "200":
+          description: "The consistency check report in zip file format"
+  /openapi.json:
+    get:
+      summary: "Retrieve the `OpenAPI 3.0` schema for this API"
+      description: "Retrieves the `OpenAPI 3.0` schema for this API"
+      operationId: getSystemToolsOpenApiSchema
+      x-gw-extensions:
+        operationType: get-element
+        resourceType: SystemToolsOpenApiSchema
+      x-gw-parameter-sets:
+      - openapi
+      responses:
+        "200":
+          description: "The `OpenAPI 3.0` schema for this API"
+          schema:
+            type: string
+parameters:
+  batchProcessType:
+    name: batchProcessType
+    in: path
+    description: "The type of the batch process"
+    required: true
+    type: string
+    x-gw-sinceVersion: "1.5.0"
+  dbccId:
+    name: dbccId
+    in: path
+    description: "The identifier for the dbcc run"
+    required: true
+    type: string
+    x-gw-sinceVersion: "1.5.0"
+x-gw-cors-policy: systemtools
+x-gw-localizationKeyPrefix: systemtools.v1
+definitions:
+  BatchProcessData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "systemtools#/definitions/BatchProcess"
+  BatchProcessList:
+    type: object
+    x-gw-extend:
+    - "#/definitions/DataListEnvelope"
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/BatchProcessData"
+  BatchProcessResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/BatchProcessData"
+  BatchProcessStartData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "systemtools#/definitions/BatchProcessArguments"
+  BatchProcessStartRequest:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/BatchProcessStartData"
+  DatabaseConsistencyCheckData:
+    x-gw-extend:
+    - "#/definitions/DataEnvelope"
+    required:
+    - attributes
+    properties:
+      attributes:
+        $ref: "systemtools#/definitions/DatabaseConsistencyCheck"
+  DatabaseConsistencyCheckList:
+    type: object
+    x-gw-extend:
+    - "#/definitions/DataListEnvelope"
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/DatabaseConsistencyCheckData"
+  DatabaseConsistencyCheckResponse:
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/DatabaseConsistencyCheckData"

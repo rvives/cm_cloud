@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <InputSet
+    id="DriversLicenseInputSet"
+    mode="NoLicenseState">
+    <Require
+      name="contact"
+      type="ABContact"/>
+    <Label
+      label="DisplayKey.get(&quot;Web.ContactDetail.DriversLicense&quot;)"/>
+    <TextInput
+      editable="true"
+      id="LicenseNumber"
+      label="DisplayKey.get(&quot;Web.ContactDetail.DriversLicense.LicenseNumber&quot;)"
+      value="(contact as ABPerson).LicenseNumber"/>
+  </InputSet>
+</PCF>

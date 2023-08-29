@@ -1,0 +1,23 @@
+resources:
+  BatchProcess:
+    permissions:
+      view: true
+      edit: true
+      start: true
+      stop: true
+  BatchProcesses:
+    permissions:
+      view: true
+  DatabaseConsistencyCheck:
+    permissions:
+      view: true
+  DatabaseConsistencyCheckReport:
+    permissions:
+      view: true
+  DatabaseConsistencyChecks:
+    permissions:
+      view: true
+    filter: __noFilter
+  SystemToolsOpenApiSchema:
+    permissions:
+      view: true

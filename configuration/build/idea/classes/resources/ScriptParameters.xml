@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serialization
+  xmlns="http://guidewire.com/xml"
+  xmlns:tns="http://guidewire.com/xml"
+  xmlns:xsd="http://www.w3.org/1999/XMLSchema"
+  xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance">
+  <script-parameters>
+    <!-- GAR START: config/resources/granite_on_cloud-ScriptParameters.xml [/opt/teamcity/agent/work/45c3a2f1b8ee4237/gpm-generator/downloads/edge/backend/xcenter-config/xcenter-utils/cm-utils/../../../Platform/src/main] -->
+    <ScriptParameterPack
+      ParamName="CaptchaSecret"
+      ParamType="varchar">
+      <ParamValue/>
+    </ScriptParameterPack>
+    <ScriptParameterPack
+      ParamName="AuthServerUrl"
+      ParamType="varchar">
+      <ParamValue>https://dev-18895794.okta.com/oauth2/default</ParamValue>
+    </ScriptParameterPack>
+    <ScriptParameterPack
+      ParamName="AuthServerPublicKeysEndpoint"
+      ParamType="varchar">
+      <ParamValue>/v1/keys</ParamValue>
+    </ScriptParameterPack>
+    <ScriptParameterPack
+      ParamName="OktaApplicationId"
+      ParamType="varchar">
+      <ParamValue>0oaa87dpcpLxSBl7x5d7</ParamValue>
+    </ScriptParameterPack>
+    <ScriptParameterPack
+      ParamName="EnablePortalSingleSignOff"
+      ParamType="bit">
+      <ParamValue>false</ParamValue>
+    </ScriptParameterPack>
+    <!-- Allowed values for the url in the Reset Password requests (java RegEx) -->
+    <ScriptParameterPack
+      ParamName="AllowedResetPasswordUrls"
+      ParamType="varchar">
+      <!-- *** NOTICE ***
+        Make sure you keep the ^ symbol at the beginning of the RegEx
+        so that you will match the URL from the start.
+
+        Also make sure you retain the ending / character otherwise
+        some urls can be created to trick your setup
+        if your parameter was ^https?://my.good.domain.com
+        it could match https://my.good.domain.com.evildomain.com
+
+        Examples of valid patterns:
+          <ParamValue>^https?://localhost/</ParamValue>
+          <ParamValue>^https?://mydomain.com/</ParamValue> -->
+      <ParamValue>^https?://localhost(:[0-9]+)?/</ParamValue>
+    </ScriptParameterPack>
+    <!-- Allowed redirect urls for DocumentRetrievalHandler -->
+    <ScriptParameterPack
+      ParamName="AllowedDocumentRetrievalRedirectUrls"
+      ParamType="varchar">
+      <!-- *** NOTICE ***
+        Make sure you keep the ^ symbol at the beginning of the RegEx
+        so that you will match the URL from the start.
+
+        Also make sure you retain the ending / character otherwise
+        some urls can be created to trick your setup
+        if your parameter was ^https?://my.good.domain.com
+        it could match https://my.good.domain.com.evildomain.com
+
+        Examples of valid patterns:
+          <ParamValue>^https?://localhost/</ParamValue>
+          <ParamValue>^https?://mydomain.com/</ParamValue> -->
+      <ParamValue>^https?://localhost(:[0-9]+)?/</ParamValue>
+    </ScriptParameterPack>
+    <!-- GAR END -->
+  </script-parameters>
+</serialization>

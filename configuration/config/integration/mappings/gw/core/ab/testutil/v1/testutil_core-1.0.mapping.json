@@ -1,0 +1,115 @@
+{
+  "schemaName": "gw.core.ab.testutil.v1.testutil_core-1.0",
+  "combine": [
+    "gw.core.ab.framework.v1.framework_core-1.0"
+  ],
+  "mappers": {
+    "TestUtilContact": {
+      "schemaDefinition": "TestUtilContact",
+      "root": "entity.ABContact",
+      "properties": {
+        "createStatus": {
+          "path": "ABContact.CreateStatus",
+          "mapper": "#/mappers/TypeKeyReference"
+        },
+        "id": {
+          "path": "ABContact.RestId"
+        },
+        "relatedContacts": {
+          "path": "ABContact.TargetRelatedContacts",
+          "mapper": "#/mappers/TestUtilRelatedContact"
+        },
+        "score": {
+          "path": "ABContact.Score"
+        }
+      }
+    },
+    "TestUtilGroup": {
+      "schemaDefinition": "TestUtilGroup",
+      "root": "entity.Group",
+      "properties": {
+        "groupType": {
+          "path": "Group.GroupType",
+          "mapper": "#/mappers/TypeKeyReference"
+        },
+        "id": {
+          "path": "Group.RestId"
+        },
+        "name": {
+          "path": "Group.Name"
+        },
+        "securityZone": {
+          "path": "Group.SecurityZone.RestV1_AsReference",
+          "mapper": "#/mappers/ResourceReference"
+        },
+        "supervisor": {
+          "path": "Group.Supervisor.RestV1_AsReference",
+          "mapper": "#/mappers/ResourceReference"
+        }
+      }
+    },
+    "TestUtilRelatedContact": {
+      "schemaDefinition": "TestUtilRelatedContact",
+      "root": "entity.ABContactContact",
+      "properties": {
+        "relatedContact": {
+          "path": "ABContactContact.RelABContact.RestV1_AsReference",
+          "mapper": "#/mappers/ResourceReference"
+        },
+        "relationship": {
+          "path": "ABContactContact.Rel",
+          "mapper": "#/mappers/TypeKeyReference"
+        }
+      }
+    },
+    "TestUtilRole": {
+      "schemaDefinition": "TestUtilRole",
+      "root": "entity.Role",
+      "properties": {
+        "id": {
+          "path": "Role.RestId"
+        },
+        "name": {
+          "path": "Role.Name"
+        },
+        "permissions": {
+          "path": "Role.Privileges*.Permission*.Code"
+        }
+      }
+    },
+    "TestUtilSpecialistService": {
+      "schemaDefinition": "TestUtilSpecialistService",
+      "root": "entity.SpecialistService",
+      "properties": {
+        "active": {
+          "path": "SpecialistService.Active"
+        },
+        "code": {
+          "path": "SpecialistService.Code"
+        },
+        "id": {
+          "path": "SpecialistService.RestId"
+        },
+        "name": {
+          "path": "SpecialistService.Name"
+        },
+        "parent": {
+          "path": "SpecialistService.Parent",
+          "mapper": "#/mappers/TestUtilSpecialistServiceCodeReference"
+        }
+      }
+    },
+    "TestUtilSpecialistServiceCodeReference": {
+      "schemaDefinition": "TestUtilCodeReference",
+      "root": "entity.SpecialistService",
+      "properties": {
+        "code": {
+          "path": "SpecialistService.Code"
+        },
+        "displayName": {
+          "path": "SpecialistService.RestV1_SafeDisplayName"
+        }
+      }
+    }
+  }
+}

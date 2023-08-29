@@ -1,0 +1,12 @@
+swagger: "2.0"
+consumes:
+- application/json
+produces:
+- application/json
+x-gw-combine:
+- gw.content.ab.contact.v1.contact_content-1.0
+x-gw-schema-import:
+  contact: ext.contact.v1.contact_ext-1.0
+x-gw-apihandlers:
+- gw.rest.ext.ab.contact.v1.ContactApiExtHandler
+paths: {}

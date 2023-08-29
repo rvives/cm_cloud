@@ -1,0 +1,45 @@
+name: gw_claimautomationfeservice
+endpoints:
+- endpoint: /admin/v1/openapi.json
+  methods:
+  - GET
+- endpoint: /async/v1/openapi.json
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*"
+  methods:
+  - GET
+- endpoint: "/async/v1/requests/*/response"
+  methods:
+  - GET
+- endpoint: /common/v1/openapi.json
+  methods:
+  - GET
+- endpoint: "/common/v1/documents/*"
+  methods:
+  - GET
+- endpoint: "/common/v1/documents/*/content"
+  methods:
+  - GET
+- endpoint: /contact/v1/openapi.json
+  methods:
+  - GET
+- endpoint: "/contact/v1/contacts/*/addresses"
+  methods:
+  - GET
+- endpoint: "/contact/v1/contacts/*/addresses/*"
+  methods:
+  - GET
+- endpoint: "/contact/v1/contacts/*/documents"
+  methods:
+  - GET
+- endpoint: /contact/v1/search/contacts
+  methods:
+  - POST
+- endpoint: /systemtools/v1/openapi.json
+  methods:
+  - GET
+accessibleFields:
+  "*":
+    view:
+    - "*public"

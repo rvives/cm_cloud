@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<plugin interface="ClientSystemPlugin" name="PolicySystemPlugin">
+  <plugin-gosu gosuclass="gw.plugin.policy.pc5040.PCPolicySystemPlugin"/>
+  
+  <!-- Plugin to use when connecting ContactManager to PolicyCenter:
+    <plugin-gosu
+      gosuclass="gw.plugin.policy.pc5040.PCPolicySystemPlugin"/>
+  -->
+  <plugin-gosu env="cloud-dev" gosuclass="gw.plugin.policy.pc5040.PCPolicySystemPlugin">
+    <param name="username" value="su"/>
+    <param name="password" value="gw"/>
+  </plugin-gosu>
+</plugin>

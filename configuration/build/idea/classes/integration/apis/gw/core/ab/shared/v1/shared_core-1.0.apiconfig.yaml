@@ -1,0 +1,134 @@
+resources:
+  ABContact:
+    resource: gw.rest.core.ab.contact.v1.contact.ABContactCoreResource
+  ABContactAddress:
+    resource: gw.rest.core.ab.contact.v1.contact.address.ABContactAddressCoreResource
+    mapper: Address
+    updater: Address
+  ABContactAddresses:
+    resource: gw.rest.core.ab.contact.v1.contact.address.ABContactAddressesCoreResource
+    defaultSort:
+    - city
+    - addressLine1
+  ABContactDocuments:
+    resource: gw.rest.core.ab.contact.v1.contact.document.ABContactDocumentsCoreResource
+  ABContacts:
+    resource: gw.rest.core.ab.contact.v1.contact.ABContactsCoreResource
+    defaultSort:
+    - taxId
+  Activities:
+    resource: gw.rest.core.ab.common.v1.activity.ActivitiesCoreResource
+  Activity:
+    resource: gw.rest.core.ab.common.v1.activity.ActivityCoreResource
+  ActivityAssignees:
+    resource: gw.rest.core.ab.common.v1.activity.ActivityAssigneesCoreResource
+  ActivityNotes:
+    resource: gw.rest.core.ab.common.v1.activity.ActivityNotesCoreResource
+  ActivityPattern:
+    resource: gw.rest.core.ab.common.v1.activitypattern.ActivityPatternCoreResource
+  ActivityPatterns:
+    resource: gw.rest.core.ab.common.v1.activitypattern.ActivityPatternsCoreResource
+    defaultPageSize: 100
+    maxPageSize: 500
+    defaultSort:
+    - code
+  AdminOpenApiSchema:
+    resource: gw.api.modules.rest.framework.v1.openapi.v3.OpenApiJsonPlatformResource
+  AssignableQueue:
+    resource: gw.rest.core.ab.admin.v1.assignablequeue.AssignableQueueCoreResource
+  AssignableQueues:
+    resource: gw.rest.core.ab.admin.v1.assignablequeue.AssignableQueuesCoreResource
+    defaultSort:
+    - name
+  Assignee:
+    resource: gw.rest.core.ab.common.v1.assignment.AssigneeCoreResource
+  CommonOpenApiSchema:
+    resource: gw.api.modules.rest.framework.v1.openapi.v3.OpenApiJsonPlatformResource
+  ContactOpenApiSchema:
+    resource: gw.api.modules.rest.framework.v1.openapi.v3.OpenApiJsonPlatformResource
+  ContactSearch:
+    resource: gw.rest.core.ab.contact.v1.search.contact.ContactSearchCoreResource
+  Document:
+    resource: gw.rest.core.ab.common.v1.document.DocumentCoreResource
+  DocumentContent:
+    resource: gw.rest.core.ab.common.v1.document.DocumentContentCoreResource
+  Documents:
+    resource: gw.rest.core.ab.common.v1.document.DocumentsCoreResource
+  Group:
+    resource: gw.rest.core.ab.admin.v1.group.GroupCoreResource
+  GroupUser:
+    resource: gw.rest.core.ab.admin.v1.group.GroupUserCoreResource
+  GroupUsers:
+    resource: gw.rest.core.ab.admin.v1.group.GroupUsersCoreResource
+    defaultSort:
+    - user
+  Groups:
+    resource: gw.rest.core.ab.admin.v1.group.GroupsCoreResource
+    defaultSort:
+    - name
+  Note:
+    resource: gw.rest.core.ab.common.v1.note.NoteCoreResource
+  Role:
+    resource: gw.rest.core.ab.admin.v1.role.RoleCoreResource
+  RolePermission:
+    resource: gw.rest.core.ab.admin.v1.role.permission.RolePermissionCoreResource
+  RolePermissions:
+    resource: gw.rest.core.ab.admin.v1.role.permission.RolePermissionsCoreResource
+    defaultSort:
+    - permission
+  Roles:
+    resource: gw.rest.core.ab.admin.v1.role.RolesCoreResource
+    defaultSort:
+    - name
+  TypeList:
+    resource: gw.rest.core.ab.common.v1.metadata.TypelistCoreResource
+  TypeLists:
+    resource: gw.rest.core.ab.common.v1.metadata.TypelistsCoreResource
+    defaultSort:
+    - name
+  User:
+    resource: gw.rest.core.ab.admin.v1.user.UserCoreResource
+  Users:
+    resource: gw.rest.core.ab.admin.v1.user.UsersCoreResource
+basePaths:
+  admin: /admin/v1
+  common: /common/v1
+  contact: /contact/v1
+mappingFiles:
+- gw.core.ab.admin.v1.admin_core-1.0
+- gw.core.ab.contact.v1.contact_core-1.0
+updaterFiles:
+- gw.core.ab.admin.v1.admin_core-1.0
+- gw.core.ab.contact.v1.contact_core-1.0
+resourceAccess:
+  default:
+    yaml: core.shared.v1.default_core-1.0
+  internal:
+    yaml: core.shared.v1.internal_core-1.0
+  service:
+    yaml: core.shared.v1.service_core-1.0
+  unauthenticated:
+    yaml: core.shared.v1.unauthenticatedUser_core-1.0
+rootCollections:
+  ABContact: ABContacts
+  User: Users
+entityURIMappings:
+  ABContact:
+    uri: "/contact/v1/contacts/${ABContact.RestId}"
+  Address:
+    uri: "${parentUri}/addresses/${Address.RestId}"
+    parent: Address.ABContact
+  Group:
+    uri: "/admin/v1/groups/${Group.RestId}"
+  Role:
+    uri: "/admin/v1/roles/${Role.RestId}"
+  RolePrivilege:
+    uri: "${parentUri}/permissions/${RolePrivilege.RestId}"
+    parent: RolePrivilege.Role
+  User:
+    uri: "/admin/v1/users/${User.RestId}"
+dataGraph:
+  graphRoots:
+    ABContact:
+      schema: ext.contact.v1.contact_ext-1.0
+      uriPrefix: "/contact/v1/contacts/{contactId}"

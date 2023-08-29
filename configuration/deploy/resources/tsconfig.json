@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "target": "es5",
+    "lib": ["dom", "es2015.promise", "es5"],
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "outDir": "./build",
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "silent": true
+  },
+  "include": [
+    "./ts/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "**/*.spec.ts"
+  ]
+}

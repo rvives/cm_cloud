@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <ListViewPanel
+    id="OfficialIDsLV">
+    <ExposeIterator
+      valueType="entity.OfficialID"
+      widget="OfficialIDsLV"/>
+    <Require
+      name="Contact"
+      type="ABContact"/>
+    <RowIterator
+      editable="true"
+      elementName="officialID"
+      hideCheckBoxesIfReadOnly="true"
+      toAdd="Contact.addToABOfficialIDs(officialID)"
+      toRemove="Contact.removeFromABOfficialIDs(officialID)"
+      value="Contact.ABOfficialIDs"
+      valueType="entity.ABOfficialID[]">
+      <Row>
+        <TypeKeyCell
+          editable="true"
+          id="officialIDType"
+          label="DisplayKey.get(&quot;Web.ContactDetail.OfficialIDType&quot;)"
+          required="true"
+          value="officialID.OfficialIDType"
+          valueType="typekey.OfficialIDType">
+          <PostOnChange
+            onChange="officialID.resetIDValue()"/>
+        </TypeKeyCell>
+        <TypeKeyCell
+          editable="true"
+          id="officialIDJurisdiction"
+          label="DisplayKey.get(&quot;Web.ContactDetail.Jurisdiction&quot;)"
+          value="officialID.State"
+          valueType="typekey.Jurisdiction"/>
+        <TextCell 
+          available="officialID.OfficialIDValue == null or not (officialID.isMaskable)"
+          editable="true"
+          id="officialIDValue"
+          inputMask="officialID.inputMaskIDValue()"
+          label="DisplayKey.get(&quot;Web.ContactDetail.OfficialID&quot;)"
+          outputConversion="officialID.outputConversionIDValue(VALUE)"
+          requestValidationExpression="officialID.validateIDValueInput(VALUE)"
+          required="true"
+          value="officialID.OfficialIDValue"/>
+        <ButtonCell
+          action="officialID.OfficialIDValue = &quot;&quot;"
+          available="officialID.isMaskable and officialID.OfficialIDValue != null"
+          id="OfficialIDValueEditButton"
+          value="DisplayKey.get(&quot;Web.ContactDetail.OfficialID.Button&quot;)"
+          visible="CurrentLocation.isInEditMode()"/>
+      </Row>
+    </RowIterator>
+  </ListViewPanel>
+</PCF>
